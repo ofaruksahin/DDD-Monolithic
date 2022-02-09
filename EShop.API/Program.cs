@@ -7,8 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<EShopDbContext>(options =>
 {
     //"server=192.168.1.108;uid=root;pwd=123456789;database=eshop"
-    var connectionString = "server=192.168.1.108;uid=root;pwd=123456789;database=eshop";
-    options.UseMySQL(connectionString, options =>
+    var connectionString = "Server=192.168.1.106;Database=eshop;User Id=sa;Password=123456789;";
+    options.UseSqlServer(connectionString, options =>
      {
          options.MigrationsAssembly("EShop.Infrastructure");
      });
