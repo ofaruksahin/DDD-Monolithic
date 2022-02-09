@@ -1,9 +1,20 @@
-﻿var builder = WebApplication.CreateBuilder(args);
+﻿using System.Reflection;
+using EShop.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 
-// Add services to the container.
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<EShopDbContext>(options =>
+{
+    //"server=192.168.1.108;uid=root;pwd=123456789;database=eshop"
+    var connectionString = "server=192.168.1.108;uid=root;pwd=123456789;database=eshop";
+    options.UseMySQL(connectionString, options =>
+     {
+         options.MigrationsAssembly("EShop.Infrastructure");
+     });
+});
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

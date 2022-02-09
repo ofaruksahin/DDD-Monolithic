@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using EShop.Domain.Core.Enumerations;
+using MediatR;
 
 namespace EShop.Domain.Core
 {
@@ -8,11 +9,28 @@ namespace EShop.Domain.Core
         private int? _requestedHashCode;
         private int _id;
 		private List<INotification> _domainEvents;
+        private EnumStatus _status;
         #endregion
 
         public virtual int Id
         {
             get => _id;
+            protected set
+            {
+                _id = value;
+            }
+        }
+
+        public EnumStatus Status
+        {
+            get
+            {
+                return _status;
+            }
+            protected set
+            {
+                _status = value;
+            }
         }
 
         public List<INotification> DomainEvents => _domainEvents;
@@ -23,10 +41,15 @@ namespace EShop.Domain.Core
             _domainEvents.Add(eventItem);
         }
 
-        public void RemoveDomainItem(INotification eventItem)
+        public void RemoveDomainEvent(INotification eventItem)
         {
             if (_domainEvents is null) return;
             _domainEvents.Remove(eventItem);
+        }
+
+        public void ClearDomainEvents()
+        {
+            _domainEvents?.Clear();
         }
 
         public bool IsTransient()

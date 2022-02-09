@@ -9,4 +9,9 @@
   <ItemGroup>
     <ProjectReference Include="..\EShop.Infrastructure\EShop.Infrastructure.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="MySql.Data.EntityFrameworkCore" />
+    <None Remove="MySql.EntityFrameworkCore" />
+    <None Remove="Pomelo.EntityFrameworkCore.MySql" />
+  </ItemGroup>
 </Project>

@@ -13,10 +13,14 @@
     <None Remove="AggregatesModel\" />
     <None Remove="Events\" />
     <None Remove="Exceptions\" />
+    <None Remove="AggregatesModel\ProductAggregateModel\" />
+    <None Remove="AggregatesModel\SellerAggregateModel\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AggregatesModel\" />
     <Folder Include="Events\" />
     <Folder Include="Exceptions\" />
+    <Folder Include="AggregatesModel\ProductAggregateModel\" />
+    <Folder Include="AggregatesModel\SellerAggregateModel\" />
   </ItemGroup>
 </Project>
