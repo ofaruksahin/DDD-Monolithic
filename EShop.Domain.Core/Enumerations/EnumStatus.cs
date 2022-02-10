@@ -1,5 +1,4 @@
-﻿using System;
-namespace EShop.Domain.Core.Enumerations
+﻿namespace EShop.Domain.Core.Enumerations
 {
     public class EnumStatus : Enumeration
     {
@@ -11,4 +10,3 @@ namespace EShop.Domain.Core.Enumerations
         }
     }
 }
-

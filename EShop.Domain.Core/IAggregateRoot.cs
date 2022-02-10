@@ -1,8 +1,6 @@
-﻿using System;
-namespace EShop.Domain.Core
+﻿namespace EShop.Domain.Core
 {
-	public interface IAggregateRoot
-	{
-	}
+    public interface IAggregateRoot
+    {
+    }
 }
-

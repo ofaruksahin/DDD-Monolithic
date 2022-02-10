@@ -4,13 +4,15 @@ using MediatR;
 namespace EShop.Domain.Core
 {
     public class Entity
-	{
+    {
         #region Private Fields
+
         private int? _requestedHashCode;
         private int _id;
-		private List<INotification> _domainEvents;
+        private List<INotification> _domainEvents;
         private EnumStatus _status;
-        #endregion
+
+        #endregion Private Fields
 
         public virtual int Id
         {
@@ -86,18 +88,17 @@ namespace EShop.Domain.Core
             }
         }
 
-        public static bool operator ==(Entity left,Entity right)
+        public static bool operator ==(Entity left, Entity right)
         {
             if (Object.Equals(left, null))
                 return (Object.Equals(right, null));
             else
-            return left.Equals(right);
+                return left.Equals(right);
         }
 
-        public static bool operator !=(Entity left,Entity right)
+        public static bool operator !=(Entity left, Entity right)
         {
             return !(left == right);
         }
     }
 }
-

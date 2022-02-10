@@ -1,5 +1,4 @@
-﻿using System;
-using System.Reflection;
+﻿using System.Reflection;
 
 namespace EShop.Domain.Core
 {
@@ -23,7 +22,7 @@ namespace EShop.Domain.Core
 
         public override bool Equals(object obj)
         {
-            if(obj is not Enumeration otherValue)
+            if (obj is not Enumeration otherValue)
             {
                 return false;
             }
@@ -40,4 +39,3 @@ namespace EShop.Domain.Core
         }
     }
 }
-

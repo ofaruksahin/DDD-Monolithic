@@ -1,28 +1,26 @@
-﻿using System;
-namespace EShop.Domain.Core
+﻿namespace EShop.Domain.Core
 {
-	public abstract class ValueObject
-	{
-		protected static bool EqualOperator(ValueObject left,ValueObject right)
+    public abstract class ValueObject
+    {
+        protected static bool EqualOperator(ValueObject left, ValueObject right)
         {
-			if(ReferenceEquals(left,null) ^ ReferenceEquals(right, null))
+            if (ReferenceEquals(left, null) ^ ReferenceEquals(right, null))
             {
-				return false;
+                return false;
             }
-			return ReferenceEquals(left, null) || left.Equals(right);
+            return ReferenceEquals(left, null) || left.Equals(right);
         }
 
-		protected static bool NotEqualOperator(ValueObject left,ValueObject right)
+        protected static bool NotEqualOperator(ValueObject left, ValueObject right)
         {
-			return !(EqualOperator(left, right));
+            return !(EqualOperator(left, right));
         }
 
-		protected abstract IEnumerable<object> GetEqualityComponents();
-
+        protected abstract IEnumerable<object> GetEqualityComponents();
 
         public override bool Equals(object obj)
         {
-            if(obj == null || obj.GetType() != GetType())
+            if (obj == null || obj.GetType() != GetType())
             {
                 return false;
             }
@@ -39,15 +37,14 @@ namespace EShop.Domain.Core
                 .Aggregate((x, y) => x ^ y);
         }
 
-        public static bool operator ==(ValueObject one,ValueObject two)
+        public static bool operator ==(ValueObject one, ValueObject two)
         {
             return one?.Equals(two) ?? false;
         }
 
-        public static bool operator !=(ValueObject one,ValueObject two)
+        public static bool operator !=(ValueObject one, ValueObject two)
         {
-            return !(one?.Equals(two) ?? false); 
+            return !(one?.Equals(two) ?? false);
         }
     }
 }
-

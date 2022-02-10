@@ -1,9 +1,10 @@
-﻿namespace EShop.Infrastructure
-{
-    public class EShopDbContext : DbContext,IUnitOfWork
-	{
-        public DbSet<Seller> Sellers { get; set; }
+﻿using EShop.Domain.Core.Enumerations;
 
+namespace EShop.Infrastructure
+{
+    public class EShopDbContext : DbContext, IUnitOfWork
+    {        
+        public DbSet<Seller> Sellers { get; set; }
 
         private readonly IMediator _mediator;
         private IDbContextTransaction _currentTransaction;
@@ -13,13 +14,12 @@
 
         public EShopDbContext(DbContextOptions<EShopDbContext> options) : base(options)
         {
-
         }
 
-        public EShopDbContext(DbContextOptions<EShopDbContext> options,IMediator mediator) : base(options)
+        public EShopDbContext(DbContextOptions<EShopDbContext> options, IMediator mediator) : base(options)
         {
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
-        }       
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -61,7 +61,7 @@
             }
             finally
             {
-                if(_currentTransaction != null)
+                if (_currentTransaction != null)
                 {
                     _currentTransaction.Dispose();
                     _currentTransaction = null;
@@ -77,7 +77,7 @@
             }
             finally
             {
-                if(_currentTransaction!= null)
+                if (_currentTransaction != null)
                 {
                     _currentTransaction.Dispose();
                     _currentTransaction = null;
@@ -86,4 +86,3 @@
         }
     }
 }
-

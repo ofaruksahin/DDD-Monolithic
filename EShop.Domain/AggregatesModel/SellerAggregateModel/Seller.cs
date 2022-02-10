@@ -1,10 +1,9 @@
-﻿using System;
-using EShop.Domain.Core;
+﻿using EShop.Domain.Core;
 
 namespace EShop.Domain.AggregatesModel.SellerAggregateModel
 {
-	public class Seller : Entity, IAggregateRoot
-	{
+    public class Seller : Entity, IAggregateRoot
+    {
         public string Name
         {
             get;
@@ -13,7 +12,6 @@ namespace EShop.Domain.AggregatesModel.SellerAggregateModel
 
         protected Seller()
         {
-
         }
 
         public Seller(string name)
@@ -22,4 +20,3 @@ namespace EShop.Domain.AggregatesModel.SellerAggregateModel
         }
     }
 }
-

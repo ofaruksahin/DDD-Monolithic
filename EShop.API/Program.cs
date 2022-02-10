@@ -1,17 +1,13 @@
-﻿using System.Reflection;
-using EShop.Infrastructure;
+﻿using EShop.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<EShopDbContext>(options =>
 {
-    //"server=192.168.1.108;uid=root;pwd=123456789;database=eshop"
-    var connectionString = "Server=192.168.1.106;Database=eshop;User Id=sa;Password=123456789;";
-    options.UseSqlServer(connectionString, options =>
-     {
-         options.MigrationsAssembly("EShop.Infrastructure");
-     });
+    var connectionString = "server=192.168.1.108;uid=root;pwd=123456789;database=eshop";
+    options.UseMySql(connectionString, new MySqlServerVersion(MySqlServerVersion.AutoDetect(connectionString)));
+
 });
 
 builder.Services.AddControllers();
@@ -34,4 +30,3 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
-

@@ -1,6 +1,6 @@
 ﻿namespace EShop.Infrastructure
 {
-    static class MediatorExtension
+    internal static class MediatorExtension
     {
         public static async Task DispatchDomainEventasync(this IMediator mediator, EShopDbContext ctx)
         {
@@ -16,7 +16,6 @@
 
             foreach (var domainEvent in domainEvents)
                 await mediator.Publish(domainEvent);
-        }    
+        }
     }
 }
-
