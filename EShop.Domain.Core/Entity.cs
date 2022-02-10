@@ -1,7 +1,4 @@
-﻿using EShop.Domain.Core.Enumerations;
-using MediatR;
-
-namespace EShop.Domain.Core
+﻿namespace EShop.Domain.Core
 {
     public class Entity
     {
@@ -10,8 +7,6 @@ namespace EShop.Domain.Core
         private int? _requestedHashCode;
         private int _id;
         private List<INotification> _domainEvents;
-        private EnumStatus _status;
-
         #endregion Private Fields
 
         public virtual int Id
@@ -25,15 +20,11 @@ namespace EShop.Domain.Core
 
         public EnumStatus Status
         {
-            get
-            {
-                return _status;
-            }
-            protected set
-            {
-                _status = value;
-            }
+            get;
+            protected set;
         }
+
+        protected int _statusId;
 
         public List<INotification> DomainEvents => _domainEvents;
 

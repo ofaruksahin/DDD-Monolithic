@@ -1,5 +1,6 @@
 ﻿global using EShop.Domain.AggregatesModel.SellerAggregateModel;
 global using EShop.Domain.Core;
+global using EShop.Domain.Core.Enumerations;
 global using EShop.Infrastructure.EntityConfigurations;
 global using MediatR;
 global using Microsoft.EntityFrameworkCore;

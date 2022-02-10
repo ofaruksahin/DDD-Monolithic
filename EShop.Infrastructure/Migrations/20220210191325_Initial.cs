@@ -13,17 +13,16 @@ namespace EShop.Infrastructure.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "EnumStatus",
+                name: "Status",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(type: "longtext", nullable: true)
+                    Id = table.Column<int>(type: "int", nullable: false, defaultValue: 1),
+                    Name = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EnumStatus", x => x.Id);
+                    table.PrimaryKey("PK_Status", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -35,18 +34,29 @@ namespace EShop.Infrastructure.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    StatusId = table.Column<int>(type: "int", nullable: true)
+                    StatusId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Sellers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Sellers_EnumStatus_StatusId",
+                        name: "FK_Sellers_Status_StatusId",
                         column: x => x.StatusId,
-                        principalTable: "EnumStatus",
-                        principalColumn: "Id");
+                        principalTable: "Status",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.InsertData(
+                table: "Status",
+                columns: new[] { "Id", "Name" },
+                values: new object[] { 1, "Pasif" });
+
+            migrationBuilder.InsertData(
+                table: "Status",
+                columns: new[] { "Id", "Name" },
+                values: new object[] { 2, "Aktif" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Sellers_StatusId",
@@ -60,7 +70,7 @@ namespace EShop.Infrastructure.Migrations
                 name: "Sellers");
 
             migrationBuilder.DropTable(
-                name: "EnumStatus");
+                name: "Status");
         }
     }
 }

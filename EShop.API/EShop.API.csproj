@@ -26,5 +26,11 @@
     <None Remove="MySql.EntityFrameworkCore" />
     <None Remove="MySql.Data.EntityFrameworkCore" />
     <None Remove="Microsoft.EntityFrameworkCore.SqlServer" />
+    <None Remove="Controllers\" />
+    <None Remove="Extensions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+    <Folder Include="Extensions\" />
   </ItemGroup>
 </Project>

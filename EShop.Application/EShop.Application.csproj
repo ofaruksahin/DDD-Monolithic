@@ -13,5 +13,15 @@
     <None Remove="MySql.Data.EntityFrameworkCore" />
     <None Remove="MySql.EntityFrameworkCore" />
     <None Remove="Pomelo.EntityFrameworkCore.MySql" />
+    <None Remove="Commands\" />
+    <None Remove="DomainEventHandlers\" />
+    <None Remove="Commands\SellerCommands\" />
+    <None Remove="DomainEventHandlers\SellerEventHandlers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Commands\" />
+    <Folder Include="DomainEventHandlers\" />
+    <Folder Include="Commands\SellerCommands\" />
+    <Folder Include="DomainEventHandlers\SellerEventHandlers\" />
   </ItemGroup>
 </Project>

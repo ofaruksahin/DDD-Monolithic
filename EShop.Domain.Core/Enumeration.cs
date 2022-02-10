@@ -1,6 +1,4 @@
-﻿using System.Reflection;
-
-namespace EShop.Domain.Core
+﻿namespace EShop.Domain.Core
 {
     public abstract class Enumeration : IComparable
     {

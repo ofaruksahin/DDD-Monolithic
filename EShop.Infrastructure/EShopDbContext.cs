@@ -1,9 +1,8 @@
-﻿using EShop.Domain.Core.Enumerations;
-
-namespace EShop.Infrastructure
+﻿namespace EShop.Infrastructure
 {
     public class EShopDbContext : DbContext, IUnitOfWork
-    {        
+    {
+        public DbSet<EnumStatus> Status { get; set; }
         public DbSet<Seller> Sellers { get; set; }
 
         private readonly IMediator _mediator;
@@ -24,15 +23,15 @@ namespace EShop.Infrastructure
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new SellerEntityTypeConfiguration());
-            //base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfiguration(new StatusEntityTypeConfiguration());
         }
 
         public async Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default)
         {
-            await _mediator.DispatchDomainEventasync(this);
-
             var result = await base.SaveChangesAsync(cancellationToken);
-            return true;
+            if (result > 0)
+                await _mediator.DispatchDomainEventasync(this);
+            return result > 0;
         }
 
         public async Task<IDbContextTransaction> BeginTransactionAsync()

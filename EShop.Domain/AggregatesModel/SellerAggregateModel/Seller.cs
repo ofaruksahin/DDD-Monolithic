@@ -1,6 +1,4 @@
-﻿using EShop.Domain.Core;
-
-namespace EShop.Domain.AggregatesModel.SellerAggregateModel
+﻿namespace EShop.Domain.AggregatesModel.SellerAggregateModel
 {
     public class Seller : Entity, IAggregateRoot
     {
@@ -17,6 +15,18 @@ namespace EShop.Domain.AggregatesModel.SellerAggregateModel
         public Seller(string name)
         {
             Name = name;
+            _statusId = EnumStatus.Active.Id;
+        }
+
+        public void AddSeller()
+        {
+            AddDomainEvent(new SellerCreatedDomainEvent(this));
+        }
+
+        public void SetStatusChangedToPassive()
+        {
+            _statusId = EnumStatus.Passive.Id;
+            AddDomainEvent(new SellerStatusChangedToPassive(this));
         }
     }
 }
