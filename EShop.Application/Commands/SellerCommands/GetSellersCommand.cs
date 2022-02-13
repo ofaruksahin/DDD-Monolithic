@@ -25,6 +25,13 @@ namespace EShop.Application.Commands.SellerCommands
             get;
             set;
         }
+
+        public GetSellersCommandResponse(int id, string name, string sellerStatus)
+        {
+            Id = id;
+            Name = name;
+            SellerStatus = sellerStatus;
+        }
     }
 }
 

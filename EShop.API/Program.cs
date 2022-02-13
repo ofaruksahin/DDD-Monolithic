@@ -1,4 +1,5 @@
 ﻿using EShop.Application;
+using EShop.Domain.AggregatesModel.CategoryAggregateModel;
 using EShop.Domain.AggregatesModel.SellerAggregateModel;
 using EShop.Infrastructure;
 using EShop.Infrastructure.Repositories;
@@ -20,6 +21,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddMediatR(typeof(ApplicationAssemblyLoader));
 builder.Services.AddScoped<ISellerRepository, SellerRepository>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
 var app = builder.Build();
 

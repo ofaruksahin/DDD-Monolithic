@@ -17,11 +17,13 @@
     <None Remove="DomainEventHandlers\" />
     <None Remove="Commands\SellerCommands\" />
     <None Remove="DomainEventHandlers\SellerEventHandlers\" />
+    <None Remove="Commands\CategoryCommands\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands\" />
     <Folder Include="DomainEventHandlers\" />
     <Folder Include="Commands\SellerCommands\" />
     <Folder Include="DomainEventHandlers\SellerEventHandlers\" />
+    <Folder Include="Commands\CategoryCommands\" />
   </ItemGroup>
 </Project>

@@ -13,12 +13,7 @@ namespace EShop.Application.Commands.SellerCommands
             var seller = await _sellerRepository.GetSeller(request.Id);
             if (seller == null)
                 return BaseResponse<GetSellerCommandResponse>.Fail(null, "Böyle bir satıcı bulunamadı");
-            return BaseResponse<GetSellerCommandResponse>.Success(new GetSellerCommandResponse
-            {
-                Id = seller.Id,
-                Name = seller.Name,
-                SellerStatus = seller.Status.Name
-            });
+            return BaseResponse<GetSellerCommandResponse>.Success(new GetSellerCommandResponse(seller.Id, seller.Name, seller.Status.Name));
         }
     }
 }

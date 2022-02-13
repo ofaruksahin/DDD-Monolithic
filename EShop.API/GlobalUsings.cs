@@ -3,3 +3,4 @@ global using MediatR;
 
 global using EShop.Domain.Core.Abstractions;
 global using EShop.Application.Commands.SellerCommands;
+global using EShop.Application.Commands.CategoryCommands;

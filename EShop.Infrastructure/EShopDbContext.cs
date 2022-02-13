@@ -4,6 +4,7 @@
     {
         public DbSet<EnumStatus> Status { get; set; }
         public DbSet<Seller> Sellers { get; set; }
+        public DbSet<Category> Categories { get; set; }
 
         private readonly IMediator _mediator;
         private IDbContextTransaction _currentTransaction;
@@ -24,6 +25,7 @@
         {
             modelBuilder.ApplyConfiguration(new SellerEntityTypeConfiguration());
             modelBuilder.ApplyConfiguration(new StatusEntityTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new CategoryEntityTypeConfiguration());
         }
 
         public async Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default)

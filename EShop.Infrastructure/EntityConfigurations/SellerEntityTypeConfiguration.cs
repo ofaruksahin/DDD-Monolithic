@@ -9,15 +9,6 @@
             builder.Property(f => f.Name)
                 .HasMaxLength(100)
                 .IsRequired();
-
-            builder.Property<int>("_statusId")
-                .UsePropertyAccessMode(PropertyAccessMode.Field)
-                .HasColumnName("StatusId")
-                .IsRequired();
-
-            builder.HasOne(f => f.Status)
-                .WithMany()
-                .HasForeignKey("_statusId");
         }
     }
 }
