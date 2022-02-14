@@ -10,3 +10,4 @@ global using System;
 global using System.Data;
 global using System.Threading.Tasks;
 global using EShop.Domain.AggregatesModel.CategoryAggregateModel;
+global using EShop.Domain.AggregatesModel.ProductAggregateModel;

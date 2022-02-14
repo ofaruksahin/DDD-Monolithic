@@ -14,6 +14,11 @@
             Name = name;
             _statusId = EnumStatus.Active.Id;
         }
+
+        public void SetStatusChangedToPassive()
+        {
+            _statusId = EnumStatus.Passive.Id;
+        }
     }
 }
 

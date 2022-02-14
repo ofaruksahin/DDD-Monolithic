@@ -33,5 +33,20 @@ namespace EShop.Application.Commands.SellerCommands
             SellerStatus = sellerStatus;
         }
     }
+
+    public class GetSellersCommandHandler : BaseSellerCommand,
+    IRequestHandler<GetSellersCommand, BaseResponse<List<GetSellersCommandResponse>>>
+    {
+        public GetSellersCommandHandler(ISellerRepository sellerRepository) : base(sellerRepository)
+        {
+        }
+
+        public async Task<BaseResponse<List<GetSellersCommandResponse>>> Handle(GetSellersCommand request, CancellationToken cancellationToken)
+        {
+            var sellers = await _sellerRepository.GetSellers();
+            List<GetSellersCommandResponse> sellersResponse = sellers.Select(f => new GetSellersCommandResponse(f.Id, f.Name, f.Status.Name)).ToList();
+            return BaseResponse<List<GetSellersCommandResponse>>.Success(sellersResponse);
+        }
+    }
 }
 

@@ -26,6 +26,7 @@
             modelBuilder.ApplyConfiguration(new SellerEntityTypeConfiguration());
             modelBuilder.ApplyConfiguration(new StatusEntityTypeConfiguration());
             modelBuilder.ApplyConfiguration(new CategoryEntityTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductEntityTypeConfiguration());
         }
 
         public async Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default)
