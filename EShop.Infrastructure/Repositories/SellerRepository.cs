@@ -25,6 +25,7 @@
             return await dbContext
                 .Sellers
                 .Include(f => f.Status)
+                .AsNoTracking()
                 .FirstOrDefaultAsync(f => f.Id == sellerId);
         }
 
@@ -33,12 +34,17 @@
             return await dbContext
                 .Sellers
                 .Include(f => f.Status)
+                .AsNoTracking()
                 .FirstOrDefaultAsync(f => f.Name == name);
         }
 
         public async Task<List<Seller>> GetSellers()
         {
-            return await dbContext.Sellers.Include(f => f.Status).ToListAsync();
+            return await dbContext
+                .Sellers
+                .Include(f => f.Status)
+                .AsNoTracking()
+                .ToListAsync();
         }
 
         public Seller Update(Seller seller)

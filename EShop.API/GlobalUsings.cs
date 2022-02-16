@@ -13,6 +13,6 @@ global using EShop.Domain.AggregatesModel.SellerAggregateModel;
 global using EShop.Infrastructure;
 global using EShop.Infrastructure.Repositories;
 global using EShop.Domain.AggregatesModel.ProductAggregateModel;
+global using EShop.Application.Commands.ProductCommands;
 
-
-using Microsoft.EntityFrameworkCore;
+global using Microsoft.EntityFrameworkCore;

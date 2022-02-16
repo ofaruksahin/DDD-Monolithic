@@ -18,6 +18,10 @@
     <None Remove="Commands\SellerCommands\" />
     <None Remove="DomainEventHandlers\SellerEventHandlers\" />
     <None Remove="Commands\CategoryCommands\" />
+    <None Remove="DomainEventHandlers\ProductEventHandlers\" />
+    <None Remove="Commands\ProductCommands\" />
+    <None Remove="Dtos\" />
+    <None Remove="Dtos\ProductDtos\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands\" />
@@ -25,5 +29,9 @@
     <Folder Include="Commands\SellerCommands\" />
     <Folder Include="DomainEventHandlers\SellerEventHandlers\" />
     <Folder Include="Commands\CategoryCommands\" />
+    <Folder Include="DomainEventHandlers\ProductEventHandlers\" />
+    <Folder Include="Commands\ProductCommands\" />
+    <Folder Include="Dtos\" />
+    <Folder Include="Dtos\ProductDtos\" />
   </ItemGroup>
 </Project>

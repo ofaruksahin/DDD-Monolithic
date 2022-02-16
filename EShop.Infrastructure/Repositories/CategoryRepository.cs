@@ -22,17 +22,17 @@
 
         public async Task<List<Category>> GetCategories()
         {
-            return dbContext.Categories.Include(f => f.Status).ToList();
+            return dbContext.Categories.Include(f => f.Status).AsNoTracking().ToList();
         }
 
         public async Task<Category> GetCategoryById(int id)
         {
-            return dbContext.Categories.Include(f => f.Status).FirstOrDefault(f => f.Id == id);
+            return dbContext.Categories.Include(f => f.Status).AsNoTracking().FirstOrDefault(f => f.Id == id);
         }
 
         public async Task<Category> GetCategoryByName(string name)
         {
-            return dbContext.Categories.Include(f => f.Status).FirstOrDefault(f => f.Name == name);
+            return dbContext.Categories.Include(f => f.Status).AsNoTracking().FirstOrDefault(f => f.Name == name);
         }
 
         public Category Update(Category category)

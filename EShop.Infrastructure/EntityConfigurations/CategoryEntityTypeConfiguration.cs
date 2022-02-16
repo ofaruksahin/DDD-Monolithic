@@ -4,6 +4,7 @@
     {
         public override void Configure(EntityTypeBuilder<Category> builder)
         {
+            builder.ToTable("Categories");
             base.Configure(builder);
 
             builder.Property(f => f.Name)

@@ -2,7 +2,7 @@
 {
     public interface IProductRepository : IRepository<Product>
     {
-
+        Product Add(Product product);
     }
 }
 

@@ -9,6 +9,7 @@
 
         public void Configure(EntityTypeBuilder<EnumStatus> builder)
         {
+            builder.ToTable("Status");
             builder.HasKey(f => f.Id);
 
             builder.Property(f => f.Id)

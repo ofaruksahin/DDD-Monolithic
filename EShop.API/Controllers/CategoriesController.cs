@@ -38,6 +38,14 @@ namespace EShop.API.Controllers
             var response = await _mediator.Send(request);
             return Response(response);
         }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, UpdateCategoryCommand request)
+        {
+            request.Id = id;
+            var response = await _mediator.Send(request);
+            return Response(response);
+        }
     }
 }
 
