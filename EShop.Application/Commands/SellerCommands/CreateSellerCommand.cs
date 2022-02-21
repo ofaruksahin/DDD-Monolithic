@@ -18,7 +18,7 @@
             if (existsSeller != null)
                 return BaseResponse<int>.Fail(0, "Böyle bir satıcı zaten bulunuyor");
 
-            Seller seller = new Seller(request.Name);
+            Seller seller = Seller.Create(request.Name);
             seller.AddSeller();
 
             _sellerRepository.Add(seller);

@@ -16,6 +16,13 @@
     <None Remove="AggregatesModel\ProductAggregateModel\" />
     <None Remove="AggregatesModel\SellerAggregateModel\" />
     <None Remove="AggregatesModel\CategoryAggregateModel\" />
+    <None Remove="FluentValidator" />
+    <None Remove="AggregatesModel\CategoryAggregateModel\Rules\" />
+    <None Remove="FluentValidation" />
+    <None Remove="AggregatesModel\ProductAggregateModel\Rules\" />
+    <None Remove="AggregatesModel\SellerAggregateModel\Rules\" />
+    <None Remove="AggregatesModel\CustomerAggregateModel\" />
+    <None Remove="AggregatesModel\CustomerAggregateModel\Rules\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AggregatesModel\" />
@@ -24,5 +31,10 @@
     <Folder Include="AggregatesModel\ProductAggregateModel\" />
     <Folder Include="AggregatesModel\SellerAggregateModel\" />
     <Folder Include="AggregatesModel\CategoryAggregateModel\" />
+    <Folder Include="AggregatesModel\CategoryAggregateModel\Rules\" />
+    <Folder Include="AggregatesModel\ProductAggregateModel\Rules\" />
+    <Folder Include="AggregatesModel\SellerAggregateModel\Rules\" />
+    <Folder Include="AggregatesModel\CustomerAggregateModel\" />
+    <Folder Include="AggregatesModel\CustomerAggregateModel\Rules\" />
   </ItemGroup>
 </Project>

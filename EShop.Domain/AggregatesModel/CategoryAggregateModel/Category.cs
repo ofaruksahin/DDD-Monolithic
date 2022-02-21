@@ -1,4 +1,6 @@
-﻿namespace EShop.Domain.AggregatesModel.CategoryAggregateModel
+﻿using EShop.Domain.AggregatesModel.CategoryAggregateModel.Rules;
+
+namespace EShop.Domain.AggregatesModel.CategoryAggregateModel
 {
     public class Category : Entity, IAggregateRoot
     {
@@ -9,10 +11,17 @@
 
         }
 
-        public Category(string name)
+        private Category(string name)
         {
             Name = name;
             _statusId = EnumStatus.Active.Id;
+
+            CheckRule(new CategoryCreatableRule());
+        }
+
+        public static Category Create(string name)
+        {
+            return new Category(name);
         }
 
         public void SetStatusChangedToPassive()

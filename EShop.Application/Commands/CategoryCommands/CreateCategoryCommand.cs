@@ -19,7 +19,7 @@
             if (exists != null)
                 return BaseResponse<int>.Fail(0, "Böyle bir kategori zaten mevcut");
 
-            Category category = new Category(request.Name);
+            Category category = Category.Create(request.Name);
 
             _categoryRepository.Add(category);
 

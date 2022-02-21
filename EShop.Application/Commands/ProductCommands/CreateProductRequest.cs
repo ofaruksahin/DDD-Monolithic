@@ -24,11 +24,11 @@
 
         public async Task<BaseResponse<int>> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
-            List<ProductAttribute> productAttributes = request.Attributes.Select(f => new ProductAttribute(f.Name, f.Value)).ToList();
-            Product product = new Product(request.Name, request.Description, request.Quantity, request.Price, request.SellerId);
+            List<ProductAttribute> productAttributes = request.Attributes.Select(f => ProductAttribute.Create(f.Name, f.Value)).ToList();
+            Product product = Product.Create(request.Name, request.Description, request.Quantity, request.Price, request.SellerId);
             request.Attributes.ForEach(item =>
             {
-                ProductAttribute attribute = new ProductAttribute(item.Name, item.Value);
+                ProductAttribute attribute = ProductAttribute.Create(item.Name, item.Value);
                 product.AddAttribute(attribute);
             });
 
@@ -39,7 +39,7 @@
                 var category = categories.FirstOrDefault(f => f.Id == id);
                 if (category == null)
                     throw new Exception("Kategori bulunamadı!");
-                product.AddCategory(new ProductCategory(category.Id));
+                product.AddCategory(ProductCategory.Create(category.Id));
             });
 
             _productRepository.Add(product);

@@ -91,5 +91,15 @@
         {
             return !(left == right);
         }
+
+        public void CheckRule<T>(AbstractValidator<T> rule)
+        {
+            T instance = (T)Convert.ChangeType(this, typeof(T));
+            var validate = rule.Validate(instance);
+            if (!validate.IsValid)
+            {
+                throw new BusinessRuleValidationException(validate.Errors);
+            }
+        }
     }
 }

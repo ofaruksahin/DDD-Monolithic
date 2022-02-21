@@ -20,7 +20,7 @@
             _categories = new List<ProductCategory>();
         }
 
-        public Product(
+        private Product(
             string name,
             string description,
             int quantity,
@@ -38,6 +38,19 @@
 
             _statusId = EnumStatus.Active.Id;
             AddDomainEvent(new ProductCreatedDomainEvent(this));
+
+            CheckRule(new ProductCreatableRule());
+        }
+
+        public static Product Create(
+            string name,
+            string description,
+            int quantity,
+            double price,
+            int sellerId
+            )
+        {
+            return new Product(name, description, quantity, price, sellerId);
         }
 
         public void AddAttribute(ProductAttribute attribute)

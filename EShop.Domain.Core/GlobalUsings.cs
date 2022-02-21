@@ -10,3 +10,9 @@ global using MediatR;
 global using EShop.Domain.Core.Response;
 global using EShop.Domain.Core.Enumerations;
 global using System.Reflection;
+
+global using FluentValidation;
+global using FluentValidation.Results;
+
+
+global using EShop.Domain.Core.Exceptions;

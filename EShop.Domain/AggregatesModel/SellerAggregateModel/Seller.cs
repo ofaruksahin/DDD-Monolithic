@@ -12,10 +12,17 @@
         {
         }
 
-        public Seller(string name)
+        private Seller(string name)
         {
             Name = name;
             _statusId = EnumStatus.Active.Id;
+
+            CheckRule(new SellerCreatableRule());
+        }
+
+        public static Seller Create(string name)
+        {
+            return new Seller(name);
         }
 
         public void AddSeller()

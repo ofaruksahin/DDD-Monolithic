@@ -9,10 +9,17 @@
 
         }
 
-        public ProductCategory(int categoryId)
+        private ProductCategory(int categoryId)
         {
             CategoryId = categoryId;
             _statusId = EnumStatus.Active.Id;
+
+            CheckRule(new ProductCategoryCreatableRule());
+        }
+
+        public static ProductCategory Create(int categoryId)
+        {
+            return new ProductCategory(categoryId);
         }
     }
 }

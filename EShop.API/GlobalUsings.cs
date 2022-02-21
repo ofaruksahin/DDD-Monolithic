@@ -16,3 +16,5 @@ global using EShop.Domain.AggregatesModel.ProductAggregateModel;
 global using EShop.Application.Commands.ProductCommands;
 
 global using Microsoft.EntityFrameworkCore;
+
+global using EShop.Domain.AggregatesModel.CustomerAggregateModel;
