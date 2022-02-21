@@ -11,3 +11,4 @@ global using EShop.Domain.AggregatesModel.CategoryAggregateModel;
 global using EShop.Domain.Events;
 global using EShop.Domain.AggregatesModel.ProductAggregateModel;
 global using EShop.Application.Dtos.ProductDtos;
+global using EShop.Domain.Core.Enumerations;

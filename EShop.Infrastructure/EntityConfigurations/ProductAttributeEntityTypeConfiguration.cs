@@ -4,7 +4,6 @@
     {
         public override void Configure(EntityTypeBuilder<ProductAttribute> builder)
         {
-            builder.ToTable("ProductAttributes");
             base.Configure(builder);
 
             builder

@@ -2,13 +2,14 @@
 {
     public class Product : Entity, IAggregateRoot
     {
-        public ProductSeller ProductSeller { get; private set; }
         public int SellerId { get; private set; }
         public string Name { get; private set; }
         public string Description { get; private set; }
         public int Quantity { get; private set; }
         public double Price { get; private set; }
-        public int CategoryId { get; set; }
+
+        private readonly List<ProductCategory> _categories;
+        public IReadOnlyList<ProductCategory> Categories => _categories;
 
         private readonly List<ProductAttribute> _attributes;
         public IReadOnlyList<ProductAttribute> Attributes => _attributes;
@@ -16,6 +17,7 @@
         protected Product()
         {
             _attributes = new List<ProductAttribute>();
+            _categories = new List<ProductCategory>();
         }
 
         public Product(
@@ -23,26 +25,29 @@
             string description,
             int quantity,
             double price,
-            int sellerId,
-            int categoryId,
-            List<ProductAttribute> attributes = default)
+            int sellerId)
         {
             _attributes = new List<ProductAttribute>();
+            _categories = new List<ProductCategory>();
 
             Name = name;
             Description = description;
             Quantity = quantity;
             Price = price;
             SellerId = sellerId;
-            CategoryId = categoryId;
-
-            if (attributes != null)
-            {
-                attributes.ForEach(item => _attributes.Add(item));
-            }
 
             _statusId = EnumStatus.Active.Id;
             AddDomainEvent(new ProductCreatedDomainEvent(this));
+        }
+
+        public void AddAttribute(ProductAttribute attribute)
+        {
+            _attributes.Add(attribute);
+        }
+
+        public void AddCategory(ProductCategory category)
+        {
+            _categories.Add(category);
         }
     }
 }

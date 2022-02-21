@@ -1,5 +1,4 @@
-﻿using System;
-namespace EShop.Application
+﻿namespace EShop.Application
 {
     public class ApplicationAssemblyLoader
     {

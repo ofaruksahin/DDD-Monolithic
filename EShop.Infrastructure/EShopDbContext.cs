@@ -7,6 +7,7 @@
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductAttribute> ProductAttributes { get; set; }
+        public DbSet<ProductCategory> ProductCategories { get; set; }
 
         private readonly IMediator _mediator;
         private IDbContextTransaction _currentTransaction;
@@ -30,6 +31,7 @@
             modelBuilder.ApplyConfiguration(new CategoryEntityTypeConfiguration());
             modelBuilder.ApplyConfiguration(new ProductEntityTypeConfiguration());
             modelBuilder.ApplyConfiguration(new ProductAttributeEntityTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductCategoryEntityTypeConfiguration());
         }
 
         public async Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default)

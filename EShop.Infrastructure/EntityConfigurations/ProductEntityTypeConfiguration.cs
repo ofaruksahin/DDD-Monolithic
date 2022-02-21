@@ -7,19 +7,18 @@
             builder.ToTable("Products");
             base.Configure(builder);
 
-            var navigation = builder.Metadata.FindNavigation(nameof(Product.Attributes));
+            var attributeNavigation = builder.Metadata.FindNavigation(nameof(Product.Attributes));
 
-            navigation.SetPropertyAccessMode(PropertyAccessMode.Field);
+            attributeNavigation.SetPropertyAccessMode(PropertyAccessMode.Field);
+
+            var categoryNavigation = builder.Metadata.FindNavigation(nameof(Product.Categories));
+
+            categoryNavigation.SetPropertyAccessMode(PropertyAccessMode.Field);
 
             builder.HasOne<Seller>()
                 .WithMany()
                 .IsRequired()
                 .HasForeignKey("SellerId");
-
-            builder.HasOne<Category>()
-                .WithMany()
-                .IsRequired()
-                .HasForeignKey("CategoryId");
         }
     }
 }

@@ -37,16 +37,13 @@ namespace EShop.Infrastructure.Migrations
 
                     b.HasIndex("_statusId");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("EShop.Domain.AggregatesModel.ProductAggregateModel.Product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -72,13 +69,11 @@ namespace EShop.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId");
-
                     b.HasIndex("SellerId");
 
                     b.HasIndex("_statusId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("EShop.Domain.AggregatesModel.ProductAggregateModel.ProductAttribute", b =>
@@ -113,6 +108,33 @@ namespace EShop.Infrastructure.Migrations
                     b.ToTable("ProductAttributes");
                 });
 
+            modelBuilder.Entity("EShop.Domain.AggregatesModel.ProductAggregateModel.ProductCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("_statusId")
+                        .HasColumnType("int")
+                        .HasColumnName("StatusId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("_statusId");
+
+                    b.ToTable("ProductCategories");
+                });
+
             modelBuilder.Entity("EShop.Domain.AggregatesModel.SellerAggregateModel.Seller", b =>
                 {
                     b.Property<int>("Id")
@@ -132,7 +154,7 @@ namespace EShop.Infrastructure.Migrations
 
                     b.HasIndex("_statusId");
 
-                    b.ToTable("Sellers");
+                    b.ToTable("Sellers", (string)null);
                 });
 
             modelBuilder.Entity("EShop.Domain.Core.Enumerations.EnumStatus", b =>
@@ -148,7 +170,7 @@ namespace EShop.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Status");
+                    b.ToTable("Status", (string)null);
 
                     b.HasData(
                         new
@@ -176,12 +198,6 @@ namespace EShop.Infrastructure.Migrations
 
             modelBuilder.Entity("EShop.Domain.AggregatesModel.ProductAggregateModel.Product", b =>
                 {
-                    b.HasOne("EShop.Domain.AggregatesModel.CategoryAggregateModel.Category", null)
-                        .WithMany()
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("EShop.Domain.AggregatesModel.SellerAggregateModel.Seller", null)
                         .WithMany()
                         .HasForeignKey("SellerId")
@@ -214,6 +230,29 @@ namespace EShop.Infrastructure.Migrations
                     b.Navigation("Status");
                 });
 
+            modelBuilder.Entity("EShop.Domain.AggregatesModel.ProductAggregateModel.ProductCategory", b =>
+                {
+                    b.HasOne("EShop.Domain.AggregatesModel.CategoryAggregateModel.Category", null)
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EShop.Domain.AggregatesModel.ProductAggregateModel.Product", null)
+                        .WithMany("Categories")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EShop.Domain.Core.Enumerations.EnumStatus", "Status")
+                        .WithMany()
+                        .HasForeignKey("_statusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Status");
+                });
+
             modelBuilder.Entity("EShop.Domain.AggregatesModel.SellerAggregateModel.Seller", b =>
                 {
                     b.HasOne("EShop.Domain.Core.Enumerations.EnumStatus", "Status")
@@ -228,6 +267,8 @@ namespace EShop.Infrastructure.Migrations
             modelBuilder.Entity("EShop.Domain.AggregatesModel.ProductAggregateModel.Product", b =>
                 {
                     b.Navigation("Attributes");
+
+                    b.Navigation("Categories");
                 });
 #pragma warning restore 612, 618
         }
