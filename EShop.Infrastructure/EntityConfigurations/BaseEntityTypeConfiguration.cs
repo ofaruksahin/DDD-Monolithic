@@ -17,7 +17,8 @@
 
             builder.HasOne(f => f.Status)
                 .WithMany()
-                .HasForeignKey("_statusId");
+                .HasForeignKey("_statusId")
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

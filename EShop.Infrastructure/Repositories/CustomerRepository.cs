@@ -6,17 +6,7 @@
         {
         }
 
-        public IUnitOfWork UnitOfWork => throw new NotImplementedException();
-
-        public Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default)
-        {
-            throw new NotImplementedException();
-        }
+        public IUnitOfWork UnitOfWork => dbContext;
     }
 }
 

@@ -22,6 +22,7 @@
     <None Remove="Commands\ProductCommands\" />
     <None Remove="Dtos\" />
     <None Remove="Dtos\ProductDtos\" />
+    <None Remove="DomainEventHandlers\CustomerEventHandlers\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands\" />
@@ -33,5 +34,6 @@
     <Folder Include="Commands\ProductCommands\" />
     <Folder Include="Dtos\" />
     <Folder Include="Dtos\ProductDtos\" />
+    <Folder Include="DomainEventHandlers\CustomerEventHandlers\" />
   </ItemGroup>
 </Project>
