@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace EShop.Application.Commands.CategoryCommands
+﻿namespace EShop.Application.Commands.CategoryCommands
 {
-    public class BaseCategoryCommand
+    public abstract class BaseCategoryCommand
     {
         protected ICategoryRepository _categoryRepository;
 

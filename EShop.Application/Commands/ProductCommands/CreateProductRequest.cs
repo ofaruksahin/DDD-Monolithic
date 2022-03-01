@@ -1,14 +1,8 @@
 ﻿namespace EShop.Application.Commands.ProductCommands
 {
-    public class CreateProductCommand : IRequest<BaseResponse<int>>
+    public class CreateProductCommand : CreateProductDto, IRequest<BaseResponse<int>>
     {
-        public int SellerId { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; } = string.Empty;
-        public int Quantity { get; set; }
-        public double Price { get; set; }
-        public List<int> CategoryIds { get; set; }
-        public List<CreateProductAttributeDto> Attributes { get; set; } = new List<CreateProductAttributeDto>();
+
     }
 
     public class CreateProductCommandHandler : BaseProductCommand, IRequestHandler<CreateProductCommand, BaseResponse<int>>
@@ -24,6 +18,7 @@
 
         public async Task<BaseResponse<int>> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
+            BaseResponse<int> response = new BaseResponse<int>();
             List<ProductAttribute> productAttributes = request.Attributes.Select(f => ProductAttribute.Create(f.Name, f.Value)).ToList();
             Product product = Product.Create(request.Name, request.Description, request.Quantity, request.Price, request.SellerId);
             request.Attributes.ForEach(item =>
@@ -34,13 +29,19 @@
 
             var categories = await _categoryRepository.GetCategories();
 
-            request.CategoryIds.ForEach(id =>
+            foreach (var id in request.CategoryIds)
             {
                 var category = categories.FirstOrDefault(f => f.Id == id);
                 if (category == null)
-                    throw new Exception("Kategori bulunamadı!");
+                {
+                    response = BaseResponse<int>.Fail(0, $"Kategori bulunamadı");
+                    break;
+                }
                 product.AddCategory(ProductCategory.Create(category.Id));
-            });
+            }
+
+            if (response.Messages.Any())
+                return response;
 
             _productRepository.Add(product);
             var result = await _productRepository.UnitOfWork.SaveEntitiesAsync();

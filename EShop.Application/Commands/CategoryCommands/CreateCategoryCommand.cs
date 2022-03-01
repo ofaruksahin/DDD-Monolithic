@@ -1,8 +1,7 @@
 ﻿namespace EShop.Application.Commands.CategoryCommands
 {
-    public class CreateCategoryCommand : IRequest<BaseResponse<int>>
+    public class CreateCategoryCommand : CreateCategoryDto, IRequest<BaseResponse<int>>
     {
-        public string Name { get; set; }
     }
 
     public class CreateCategoryCommandHandler : BaseCategoryCommand, IRequestHandler<CreateCategoryCommand, BaseResponse<int>>

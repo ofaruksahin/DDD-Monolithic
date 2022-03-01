@@ -1,8 +1,7 @@
 ﻿namespace EShop.Application.Commands.SellerCommands
 {
-    public class CreateSellerCommand : IRequest<BaseResponse<int>>
+    public class CreateSellerCommand : CreateSellerDto, IRequest<BaseResponse<int>>
     {
-        public string Name { get; set; }
     }
 
     public class CreateSellerCommandHandler : BaseSellerCommand, IRequestHandler<CreateSellerCommand, BaseResponse<int>>

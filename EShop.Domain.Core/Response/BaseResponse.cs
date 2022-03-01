@@ -5,7 +5,7 @@
         public T Data { get; private set; }
         [JsonIgnore]
         public int StatusCode { get; private set; }
-        public List<string> Messages { get; private set; }
+        public List<string> Messages { get; private set; } = new List<string>();
         [JsonIgnore]
         public bool IsSuccess { get; private set; }
 

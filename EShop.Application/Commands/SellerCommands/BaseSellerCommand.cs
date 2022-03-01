@@ -1,5 +1,4 @@
-﻿using System;
-namespace EShop.Application.Commands.SellerCommands
+﻿namespace EShop.Application.Commands.SellerCommands
 {
     public abstract class BaseSellerCommand
     {

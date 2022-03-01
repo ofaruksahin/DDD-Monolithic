@@ -24,6 +24,8 @@
 
             _statusId = EnumStatus.Active.Id;
 
+            _customerAddresses = new List<CustomerAddress>();
+
             AddDomainEvent(new CustomerCreatedDomainEvent(this));
 
             CheckRule(new CustomerCreatableRule());

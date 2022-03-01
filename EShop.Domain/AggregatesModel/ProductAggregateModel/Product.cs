@@ -62,5 +62,12 @@
         {
             _categories.Add(category);
         }
+
+        public void ChangeStatusToPassive()
+        {
+            _statusId = EnumStatus.Passive.Id;
+
+            AddDomainEvent(new ProductStatusChangedToPassive(this));
+        }
     }
 }
