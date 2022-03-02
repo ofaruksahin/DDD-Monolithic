@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EShop.Infrastructure.Migrations
 {
     [DbContext(typeof(EShopDbContext))]
-    [Migration("20220228174157_Initial")]
+    [Migration("20220302184906_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -273,7 +273,7 @@ namespace EShop.Infrastructure.Migrations
                     b.HasOne("EShop.Domain.Core.Enumerations.EnumStatus", "Status")
                         .WithMany()
                         .HasForeignKey("_statusId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Status");
@@ -284,7 +284,7 @@ namespace EShop.Infrastructure.Migrations
                     b.HasOne("EShop.Domain.Core.Enumerations.EnumStatus", "Status")
                         .WithMany()
                         .HasForeignKey("_statusId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Status");
@@ -299,7 +299,7 @@ namespace EShop.Infrastructure.Migrations
                     b.HasOne("EShop.Domain.Core.Enumerations.EnumStatus", "Status")
                         .WithMany()
                         .HasForeignKey("_statusId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Status");
@@ -316,7 +316,7 @@ namespace EShop.Infrastructure.Migrations
                     b.HasOne("EShop.Domain.Core.Enumerations.EnumStatus", "Status")
                         .WithMany()
                         .HasForeignKey("_statusId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Status");
@@ -333,7 +333,7 @@ namespace EShop.Infrastructure.Migrations
                     b.HasOne("EShop.Domain.Core.Enumerations.EnumStatus", "Status")
                         .WithMany()
                         .HasForeignKey("_statusId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Status");
@@ -356,7 +356,7 @@ namespace EShop.Infrastructure.Migrations
                     b.HasOne("EShop.Domain.Core.Enumerations.EnumStatus", "Status")
                         .WithMany()
                         .HasForeignKey("_statusId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Status");
@@ -367,7 +367,7 @@ namespace EShop.Infrastructure.Migrations
                     b.HasOne("EShop.Domain.Core.Enumerations.EnumStatus", "Status")
                         .WithMany()
                         .HasForeignKey("_statusId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Status");

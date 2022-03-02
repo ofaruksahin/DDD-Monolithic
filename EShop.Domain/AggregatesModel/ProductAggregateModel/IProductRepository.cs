@@ -6,6 +6,8 @@
         Task<Product> GetProductById(int id);
         Task<List<Product>> GetProducts();
         Product Update(Product product);
+        ProductAttribute UpdateAttribute(ProductAttribute productAttribute);
+        ProductCategory UpdateCategory(ProductCategory productCategory);
     }
 }
 

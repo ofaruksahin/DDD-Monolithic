@@ -12,7 +12,7 @@
         {
             if (product.IsTransient())
             {
-                return dbContext.Add(product).Entity;
+                return dbContext.Products.Add(product).Entity;
             }
             else
             {
@@ -28,6 +28,7 @@
                 .Include(f => f.Categories)
                 .Include(f => f.Status)
                 .Include(f => f.Attributes)
+                .AsNoTracking()
                 .FirstOrDefaultAsync(f => f.Id == id);
             return product;
         }
@@ -39,12 +40,25 @@
                 .Include(f => f.Categories)
                 .Include(f => f.Status)
                 .Include(f => f.Attributes)
+                .AsNoTracking()
                 .ToListAsync();
         }
 
         public Product Update(Product product)
         {
             return dbContext.Products.Update(product).Entity;
+        }
+
+        public ProductAttribute UpdateAttribute(ProductAttribute productAttribute)
+        {
+            dbContext.Entry(productAttribute).State = EntityState.Modified;
+            return productAttribute;
+        }
+
+        public ProductCategory UpdateCategory(ProductCategory productCategory)
+        {
+            dbContext.Entry(productCategory).State = EntityState.Modified;
+            return productCategory;
         }
     }
 }

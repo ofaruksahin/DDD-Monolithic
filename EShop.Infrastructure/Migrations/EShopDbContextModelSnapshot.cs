@@ -271,7 +271,7 @@ namespace EShop.Infrastructure.Migrations
                     b.HasOne("EShop.Domain.Core.Enumerations.EnumStatus", "Status")
                         .WithMany()
                         .HasForeignKey("_statusId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Status");
@@ -282,7 +282,7 @@ namespace EShop.Infrastructure.Migrations
                     b.HasOne("EShop.Domain.Core.Enumerations.EnumStatus", "Status")
                         .WithMany()
                         .HasForeignKey("_statusId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Status");
@@ -297,7 +297,7 @@ namespace EShop.Infrastructure.Migrations
                     b.HasOne("EShop.Domain.Core.Enumerations.EnumStatus", "Status")
                         .WithMany()
                         .HasForeignKey("_statusId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Status");
@@ -314,7 +314,7 @@ namespace EShop.Infrastructure.Migrations
                     b.HasOne("EShop.Domain.Core.Enumerations.EnumStatus", "Status")
                         .WithMany()
                         .HasForeignKey("_statusId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Status");
@@ -331,7 +331,7 @@ namespace EShop.Infrastructure.Migrations
                     b.HasOne("EShop.Domain.Core.Enumerations.EnumStatus", "Status")
                         .WithMany()
                         .HasForeignKey("_statusId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Status");
@@ -354,7 +354,7 @@ namespace EShop.Infrastructure.Migrations
                     b.HasOne("EShop.Domain.Core.Enumerations.EnumStatus", "Status")
                         .WithMany()
                         .HasForeignKey("_statusId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Status");
@@ -365,7 +365,7 @@ namespace EShop.Infrastructure.Migrations
                     b.HasOne("EShop.Domain.Core.Enumerations.EnumStatus", "Status")
                         .WithMany()
                         .HasForeignKey("_statusId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Status");

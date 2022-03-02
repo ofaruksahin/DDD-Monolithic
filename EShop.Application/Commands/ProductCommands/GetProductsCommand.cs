@@ -45,6 +45,7 @@
                         attrDto.Id = attr.Id;
                         attrDto.Name = attr.Name;
                         attrDto.Value = attr.Value;
+                        attrDto.Status = attr.Status.Name;
 
                         product.Attributes.Add(attrDto);
                     }
@@ -57,6 +58,7 @@
                         ProductCategoryDto catDto = new ProductCategoryDto();
                         catDto.Id = category.Id;
                         catDto.Name = category.Name;
+                        catDto.Status = cat.Status.Name;
                         product.Categories.Add(catDto);
                     }
 

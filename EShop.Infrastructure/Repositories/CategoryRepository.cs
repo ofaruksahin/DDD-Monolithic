@@ -12,7 +12,7 @@
         {
             if (category.IsTransient())
             {
-                return dbContext.Add(category).Entity;
+                return dbContext.Categories.Add(category).Entity;
             }
             else
             {
@@ -37,7 +37,8 @@
 
         public Category Update(Category category)
         {
-            return dbContext.Update(category).Entity;
+            dbContext.Entry(category).State = EntityState.Modified;
+            return category;
         }
     }
 }

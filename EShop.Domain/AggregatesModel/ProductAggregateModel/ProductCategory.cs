@@ -2,6 +2,8 @@
 {
     public class ProductCategory : Entity
     {
+        public int ProductId { get; private set; }
+
         public int CategoryId { get; private set; }
 
         protected ProductCategory()
@@ -20,6 +22,11 @@
         public static ProductCategory Create(int categoryId)
         {
             return new ProductCategory(categoryId);
+        }
+
+        public void SetStatusChangedToPassive()
+        {
+            _statusId = EnumStatus.Passive.Id;
         }
     }
 }

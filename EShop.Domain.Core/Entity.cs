@@ -18,10 +18,16 @@
             }
         }
 
+        private EnumStatus _status;
         public EnumStatus Status
         {
-            get;
-            protected set;
+            get
+            {
+                if (_status == null)
+                    _status = EnumStatus.GetAll<EnumStatus>().FirstOrDefault(f => f.Id == _statusId);
+                return _status;
+            }
+            protected set => _status = value;
         }
 
         protected int _statusId;
