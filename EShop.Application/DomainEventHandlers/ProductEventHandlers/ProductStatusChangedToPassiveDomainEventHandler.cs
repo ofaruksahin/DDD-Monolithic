@@ -1,8 +1,8 @@
 ﻿namespace EShop.Application.DomainEventHandlers.ProductEventHandlers;
 
-public class ProductStatusChangedToPassiveDomainEventHandler : INotificationHandler<ProductStatusChangedToPassive>
+public class ProductStatusChangedToPassiveDomainEventHandler : INotificationHandler<ProductStatusChangedToPassiveDomainEvent>
 {
-    public async Task Handle(ProductStatusChangedToPassive notification, CancellationToken cancellationToken)
+    public async Task Handle(ProductStatusChangedToPassiveDomainEvent notification, CancellationToken cancellationToken)
     {
 
     }

@@ -1,10 +1,10 @@
 ﻿namespace EShop.Domain.Events
 {
-    public class ProductStatusChangedToPassive : INotification
+    public class ProductStatusChangedToPassiveDomainEvent : INotification
     {
         public Product Product { get; private set; }
 
-        public ProductStatusChangedToPassive(Product product)
+        public ProductStatusChangedToPassiveDomainEvent(Product product)
         {
             Product = product ?? throw new ArgumentNullException(nameof(product));
         }

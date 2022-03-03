@@ -19,7 +19,41 @@
 
         public async Task<Customer> FindByEmail(string email)
         {
-            return await dbContext.Customers.FirstOrDefaultAsync(f => f.Email == email);
+            return await dbContext
+                .Customers
+                .AsNoTracking()
+                .FirstOrDefaultAsync(f => f.Email == email);
+        }
+
+        public async Task<List<Customer>> GetCustomers()
+        {
+            return await dbContext
+                .Customers
+                .Include(f => f.CustomerAddresses)
+                .Include(f => f.Status)
+                .AsNoTracking()
+                .ToListAsync();
+        }
+
+        public async Task<Customer> GetCustomerById(int id)
+        {
+            return await dbContext
+                .Customers
+                .Include(f => f.CustomerAddresses)
+                .Include(f => f.Status)
+                .AsNoTracking()
+                .FirstOrDefaultAsync(f => f.Id == id);
+        }
+
+        public Customer Update(Customer customer)
+        {
+            return dbContext.Update(customer).Entity;
+        }
+
+        public CustomerAddress UpdateAddress(CustomerAddress customerAddress)
+        {
+            dbContext.Entry(customerAddress).State = EntityState.Modified;
+            return customerAddress;
         }
     }
 }

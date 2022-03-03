@@ -1,6 +1,6 @@
 ﻿namespace EShop.Domain.Events
 {
-    public class SellerStatusChangedToPassive : INotification
+    public class SellerStatusChangedToPassiveDomainEvent : INotification
     {
         public Seller Seller
         {
@@ -8,7 +8,7 @@
             private set;
         }
 
-        public SellerStatusChangedToPassive(Seller seller)
+        public SellerStatusChangedToPassiveDomainEvent(Seller seller)
         {
             Seller = seller;
         }

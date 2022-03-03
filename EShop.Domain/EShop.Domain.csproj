@@ -23,6 +23,8 @@
     <None Remove="AggregatesModel\SellerAggregateModel\Rules\" />
     <None Remove="AggregatesModel\CustomerAggregateModel\" />
     <None Remove="AggregatesModel\CustomerAggregateModel\Rules\" />
+    <None Remove="AggregatesModel\BasketAggregateModel\" />
+    <None Remove="AggregatesModel\BasketAggregateModel\Rules\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AggregatesModel\" />
@@ -36,5 +38,7 @@
     <Folder Include="AggregatesModel\SellerAggregateModel\Rules\" />
     <Folder Include="AggregatesModel\CustomerAggregateModel\" />
     <Folder Include="AggregatesModel\CustomerAggregateModel\Rules\" />
+    <Folder Include="AggregatesModel\BasketAggregateModel\" />
+    <Folder Include="AggregatesModel\BasketAggregateModel\Rules\" />
   </ItemGroup>
 </Project>

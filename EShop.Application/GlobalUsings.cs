@@ -16,3 +16,4 @@ global using EShop.Application.Dtos.CustomerDtos;
 global using EShop.Application.Dtos.CategoryDtos;
 global using EShop.Application.Dtos.SellerDtos;
 global using EShop.Domain.Core.Enumerations;
+global using EShop.Domain.Exceptions;

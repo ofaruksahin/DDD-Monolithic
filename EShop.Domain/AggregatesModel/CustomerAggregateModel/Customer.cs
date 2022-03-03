@@ -58,6 +58,12 @@
                 throw new CustomerAddressNotFoundException();
             address.ChangeStatusToPassive();
         }
+
+        public void ChangeStatusToPassive()
+        {
+            _statusId = EnumStatus.Passive.Id;
+            AddDomainEvent(new CustomerStatusChangedToPassiveDomainEvent(this));
+        }
     }
 }
 

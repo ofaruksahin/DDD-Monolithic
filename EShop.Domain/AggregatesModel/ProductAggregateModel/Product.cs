@@ -67,7 +67,7 @@
         {
             _statusId = EnumStatus.Passive.Id;
 
-            AddDomainEvent(new ProductStatusChangedToPassive(this));
+            AddDomainEvent(new ProductStatusChangedToPassiveDomainEvent(this));
         }
     }
 }

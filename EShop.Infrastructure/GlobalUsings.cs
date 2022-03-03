@@ -12,3 +12,4 @@ global using System.Threading.Tasks;
 global using EShop.Domain.AggregatesModel.CategoryAggregateModel;
 global using EShop.Domain.AggregatesModel.ProductAggregateModel;
 global using EShop.Domain.AggregatesModel.CustomerAggregateModel;
+global using EShop.Domain.AggregatesModel.BasketAggregateModel;
