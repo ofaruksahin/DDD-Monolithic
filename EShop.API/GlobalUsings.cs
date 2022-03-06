@@ -20,3 +20,4 @@ global using Microsoft.EntityFrameworkCore;
 global using EShop.Domain.AggregatesModel.CustomerAggregateModel;
 global using EShop.Application.Commands.CustomerCommands;
 global using EShop.Domain.AggregatesModel.BasketAggregateModel;
+global using EShop.Application.Commands.BasketCommands;

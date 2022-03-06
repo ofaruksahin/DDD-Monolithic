@@ -27,6 +27,8 @@
     <None Remove="Dtos\CustomerDtos\" />
     <None Remove="Dtos\CategoryDtos\" />
     <None Remove="Dtos\SellerDtos\" />
+    <None Remove="Dtos\BasketDtos\" />
+    <None Remove="Commands\BasketCommands\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands\" />
@@ -43,5 +45,7 @@
     <Folder Include="Dtos\CustomerDtos\" />
     <Folder Include="Dtos\CategoryDtos\" />
     <Folder Include="Dtos\SellerDtos\" />
+    <Folder Include="Dtos\BasketDtos\" />
+    <Folder Include="Commands\BasketCommands\" />
   </ItemGroup>
 </Project>

@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EShop.Infrastructure.Migrations
 {
     [DbContext(typeof(EShopDbContext))]
-    [Migration("20220302184906_Initial")]
+    [Migration("20220306175526_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,6 +20,87 @@ namespace EShop.Infrastructure.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "6.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
+
+            modelBuilder.Entity("EShop.Domain.AggregatesModel.BasketAggregateModel.Basket", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("BasketItem")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("ExcludesTaxPrice")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<decimal>("IncludingTaxPrice")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<decimal>("Tax")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<int>("_statusId")
+                        .HasColumnType("int")
+                        .HasColumnName("StatusId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BasketItem");
+
+                    b.HasIndex("_statusId");
+
+                    b.ToTable("Baskets");
+                });
+
+            modelBuilder.Entity("EShop.Domain.AggregatesModel.BasketAggregateModel.BasketItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("BasketId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("ExcludesTaxPrice")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<decimal>("IncludingTaxPrice")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ProductName")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("SellerId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SellerName")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int?>("StatusId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Tax")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BasketId");
+
+                    b.HasIndex("StatusId");
+
+                    b.ToTable("BasketItems");
+                });
 
             modelBuilder.Entity("EShop.Domain.AggregatesModel.CategoryAggregateModel.Category", b =>
                 {
@@ -268,6 +349,38 @@ namespace EShop.Infrastructure.Migrations
                         });
                 });
 
+            modelBuilder.Entity("EShop.Domain.AggregatesModel.BasketAggregateModel.Basket", b =>
+                {
+                    b.HasOne("EShop.Domain.AggregatesModel.BasketAggregateModel.BasketItem", null)
+                        .WithMany()
+                        .HasForeignKey("BasketItem")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EShop.Domain.Core.Enumerations.EnumStatus", "Status")
+                        .WithMany()
+                        .HasForeignKey("_statusId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Status");
+                });
+
+            modelBuilder.Entity("EShop.Domain.AggregatesModel.BasketAggregateModel.BasketItem", b =>
+                {
+                    b.HasOne("EShop.Domain.AggregatesModel.BasketAggregateModel.Basket", null)
+                        .WithMany("BasketItems")
+                        .HasForeignKey("BasketId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EShop.Domain.Core.Enumerations.EnumStatus", "Status")
+                        .WithMany()
+                        .HasForeignKey("StatusId");
+
+                    b.Navigation("Status");
+                });
+
             modelBuilder.Entity("EShop.Domain.AggregatesModel.CategoryAggregateModel.Category", b =>
                 {
                     b.HasOne("EShop.Domain.Core.Enumerations.EnumStatus", "Status")
@@ -371,6 +484,11 @@ namespace EShop.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Status");
+                });
+
+            modelBuilder.Entity("EShop.Domain.AggregatesModel.BasketAggregateModel.Basket", b =>
+                {
+                    b.Navigation("BasketItems");
                 });
 
             modelBuilder.Entity("EShop.Domain.AggregatesModel.CustomerAggregateModel.Customer", b =>

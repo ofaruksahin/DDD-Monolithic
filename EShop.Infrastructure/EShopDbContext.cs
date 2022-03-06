@@ -10,6 +10,8 @@
         public DbSet<ProductCategory> ProductCategories { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<CustomerAddress> CustomerAddresses { get; set; }
+        public DbSet<Basket> Baskets { get; set; }
+        public DbSet<BasketItem> BasketItems { get; set; }
 
         private readonly IMediator _mediator;
         private IDbContextTransaction _currentTransaction;
@@ -36,6 +38,7 @@
             modelBuilder.ApplyConfiguration(new ProductCategoryEntityTypeConfiguration());
             modelBuilder.ApplyConfiguration(new CustomerEntityTypeConfiguration());
             modelBuilder.ApplyConfiguration(new CustomerAddressEntityTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new BasketEntityTypeConfiguration());
         }
 
         public async Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default)
