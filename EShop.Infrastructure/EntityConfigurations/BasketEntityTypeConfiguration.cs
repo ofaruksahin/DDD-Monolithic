@@ -4,6 +4,7 @@
     {
         public override void Configure(EntityTypeBuilder<Basket> builder)
         {
+            builder.ToTable("Baskets");
             base.Configure(builder);
 
             builder
@@ -24,11 +25,6 @@
 
             var basketItemNavigation = builder.Metadata.FindNavigation(nameof(Basket.BasketItems));
             basketItemNavigation.SetPropertyAccessMode(PropertyAccessMode.Field);
-
-            builder.HasOne<BasketItem>()
-                .WithMany()
-                .IsRequired()
-                .HasForeignKey("BasketItem");
         }
     }
 }

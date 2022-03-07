@@ -60,6 +60,15 @@
             dbContext.Entry(productCategory).State = EntityState.Modified;
             return productCategory;
         }
+
+        public async Task<List<Product>> GetProductsBySeller(int sellerId)
+        {
+            return await dbContext
+                   .Products
+                   .Include(f => f.Status)
+                   .Where(f => f.Status.Id == EnumStatus.Active.Id)
+                   .ToListAsync();
+        }
     }
 }
 

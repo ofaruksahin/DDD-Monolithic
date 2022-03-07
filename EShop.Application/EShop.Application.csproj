@@ -29,6 +29,7 @@
     <None Remove="Dtos\SellerDtos\" />
     <None Remove="Dtos\BasketDtos\" />
     <None Remove="Commands\BasketCommands\" />
+    <None Remove="DomainEventHandlers\BasketEventHandlers\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands\" />
@@ -47,5 +48,6 @@
     <Folder Include="Dtos\SellerDtos\" />
     <Folder Include="Dtos\BasketDtos\" />
     <Folder Include="Commands\BasketCommands\" />
+    <Folder Include="DomainEventHandlers\BasketEventHandlers\" />
   </ItemGroup>
 </Project>

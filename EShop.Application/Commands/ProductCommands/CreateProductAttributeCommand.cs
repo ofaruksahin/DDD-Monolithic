@@ -19,7 +19,8 @@
             var attribute = ProductAttribute.Create(request.Name, request.Value);
             product.AddAttribute(attribute);
 
-            _productRepository.UpdateAttribute(attribute);
+            //_productRepository.UpdateAttribute(attribute);
+            _productRepository.Update(product);
             var result = await _productRepository.UnitOfWork.SaveEntitiesAsync();
             if (!result)
                 return BaseResponse<int>.Fail(0, "Ürüne özellik eklenemedi");

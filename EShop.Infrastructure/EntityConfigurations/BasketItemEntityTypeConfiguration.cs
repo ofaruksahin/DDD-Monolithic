@@ -4,6 +4,7 @@
     {
         public override void Configure(EntityTypeBuilder<BasketItem> builder)
         {
+            builder.ToTable("BasketItems");
             base.Configure(builder);
 
             builder
@@ -38,6 +39,10 @@
 
             builder
                 .Property(f => f.IncludingTaxPrice)
+                .IsRequired();
+
+            builder
+                .Property<int>("BasketId")
                 .IsRequired();
         }
     }

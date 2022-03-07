@@ -7,13 +7,74 @@
 
     public class CreateBasketItemCommandHandler : BaseBasketCommands, IRequestHandler<CreateBasketItemCommand, BaseResponse<int>>
     {
-        public CreateBasketItemCommandHandler(IBasketRepository basketRepository) : base(basketRepository)
+        private readonly ISellerRepository _sellerRepository;
+        private readonly IProductRepository _productRepository;
+        public CreateBasketItemCommandHandler(
+            IBasketRepository basketRepository,
+            ISellerRepository sellerRepository,
+            IProductRepository productRepository)
+            : base(basketRepository)
         {
+            _sellerRepository = sellerRepository;
+            _productRepository = productRepository;
         }
 
         public async Task<BaseResponse<int>> Handle(CreateBasketItemCommand request, CancellationToken cancellationToken)
         {
-            return null;
+            var basket = await _basketRepository.GetBasketByCustomerId(request.CustomerId);
+            if (basket == null)
+            {
+                basket = Basket.CreateBasket(request.CustomerId);
+            }
+
+            List<Seller> sellers = new List<Seller>();
+            List<Product> products = new List<Product>();
+            foreach (var basketItemDto in request.BasketItems)
+            {
+                Seller seller = sellers.FirstOrDefault(f => f.Id == basketItemDto.SellerId);
+                if (seller == null)
+                {
+                    seller = await _sellerRepository.GetSeller(basketItemDto.SellerId);
+                    if (seller != null)
+                        sellers.Add(seller);
+                }
+                if (seller == null)
+                {
+                    //TODO: Satıcı bulunamadı Hata Fırlat
+                }
+                if (seller != null && !products.Any(f => f.SellerId == seller.Id))
+                    products.AddRange(await _productRepository.GetProductsBySeller(seller.Id));
+
+                if (products.Any(f => f.SellerId == basketItemDto.SellerId && f.Id == basketItemDto.ProductId))
+                {
+                    var product = products.FirstOrDefault(f => f.SellerId == basketItemDto.SellerId && f.Id == basketItemDto.ProductId);
+                    if (product == null)
+                    {
+                        //TODO: Hata fırlat
+                    }
+                    else
+                    {
+                        var basketItem = BasketItem.Create(seller.Id, seller.Name, product.Id, product.Name, basketItemDto.Count, product.Price, product.Price * 0.18, product.Price * 1.18);
+                        basket.AddBasketItem(basketItem);
+                    }
+                }
+            }
+
+            if (basket.Id == 0)
+                _basketRepository.Add(basket);
+            else
+            {
+                _basketRepository.Update(basket);
+                foreach (var basketItem in basket.BasketItems)
+                {
+                    _basketRepository.Update(basketItem);
+                }
+            }
+
+            var result = await _basketRepository.UnitOfWork.SaveEntitiesAsync();
+            if (!result)
+                return BaseResponse<int>.Fail(0, "Sepet tanımlanamadı!");
+            return BaseResponse<int>.Success(basket.Id);
         }
     }
 }

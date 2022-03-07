@@ -1,6 +1,7 @@
 ﻿namespace EShop.API.Controllers
 {
     //TODO: Sepete ürün ekleme ve sepetten ürün silme işlemleri kodlanacak
+    //TODO: Sepetteki ürün direkt silinecek
     public class BasketsController : BaseAPIController
     {
         public BasketsController(IMediator mediator) : base(mediator)

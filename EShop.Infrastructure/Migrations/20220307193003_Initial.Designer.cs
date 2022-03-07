@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EShop.Infrastructure.Migrations
 {
     [DbContext(typeof(EShopDbContext))]
-    [Migration("20220306175526_Initial")]
+    [Migration("20220307193003_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,20 +27,17 @@ namespace EShop.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("BasketItem")
-                        .HasColumnType("int");
-
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("ExcludesTaxPrice")
-                        .HasColumnType("decimal(65,30)");
+                    b.Property<double>("ExcludesTaxPrice")
+                        .HasColumnType("double");
 
-                    b.Property<decimal>("IncludingTaxPrice")
-                        .HasColumnType("decimal(65,30)");
+                    b.Property<double>("IncludingTaxPrice")
+                        .HasColumnType("double");
 
-                    b.Property<decimal>("Tax")
-                        .HasColumnType("decimal(65,30)");
+                    b.Property<double>("Tax")
+                        .HasColumnType("double");
 
                     b.Property<int>("_statusId")
                         .HasColumnType("int")
@@ -48,11 +45,9 @@ namespace EShop.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BasketItem");
-
                     b.HasIndex("_statusId");
 
-                    b.ToTable("Baskets");
+                    b.ToTable("Baskets", (string)null);
                 });
 
             modelBuilder.Entity("EShop.Domain.AggregatesModel.BasketAggregateModel.BasketItem", b =>
@@ -61,17 +56,17 @@ namespace EShop.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("BasketId")
+                    b.Property<int?>("BasketId")
                         .HasColumnType("int");
 
                     b.Property<int>("Count")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("ExcludesTaxPrice")
-                        .HasColumnType("decimal(65,30)");
+                    b.Property<double>("ExcludesTaxPrice")
+                        .HasColumnType("double");
 
-                    b.Property<decimal>("IncludingTaxPrice")
-                        .HasColumnType("decimal(65,30)");
+                    b.Property<double>("IncludingTaxPrice")
+                        .HasColumnType("double");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
@@ -90,8 +85,8 @@ namespace EShop.Infrastructure.Migrations
                     b.Property<int?>("StatusId")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("Tax")
-                        .HasColumnType("decimal(65,30)");
+                    b.Property<double>("Tax")
+                        .HasColumnType("double");
 
                     b.HasKey("Id");
 
@@ -351,12 +346,6 @@ namespace EShop.Infrastructure.Migrations
 
             modelBuilder.Entity("EShop.Domain.AggregatesModel.BasketAggregateModel.Basket", b =>
                 {
-                    b.HasOne("EShop.Domain.AggregatesModel.BasketAggregateModel.BasketItem", null)
-                        .WithMany()
-                        .HasForeignKey("BasketItem")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("EShop.Domain.Core.Enumerations.EnumStatus", "Status")
                         .WithMany()
                         .HasForeignKey("_statusId")
@@ -370,9 +359,7 @@ namespace EShop.Infrastructure.Migrations
                 {
                     b.HasOne("EShop.Domain.AggregatesModel.BasketAggregateModel.Basket", null)
                         .WithMany("BasketItems")
-                        .HasForeignKey("BasketId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("BasketId");
 
                     b.HasOne("EShop.Domain.Core.Enumerations.EnumStatus", "Status")
                         .WithMany()

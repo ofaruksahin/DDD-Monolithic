@@ -8,6 +8,7 @@
         Product Update(Product product);
         ProductAttribute UpdateAttribute(ProductAttribute productAttribute);
         ProductCategory UpdateCategory(ProductCategory productCategory);
+        Task<List<Product>> GetProductsBySeller(int sellerId);
     }
 }
 
