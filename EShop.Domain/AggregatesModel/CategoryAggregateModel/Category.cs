@@ -14,7 +14,7 @@ namespace EShop.Domain.AggregatesModel.CategoryAggregateModel
         private Category(string name)
         {
             Name = name;
-            _statusId = EnumStatus.Active.Id;
+            StatusId = EnumStatus.Active.Id;
 
             CheckRule(new CategoryCreatableRule());
         }
@@ -26,7 +26,7 @@ namespace EShop.Domain.AggregatesModel.CategoryAggregateModel
 
         public void SetStatusChangedToPassive()
         {
-            _statusId = EnumStatus.Passive.Id;
+            StatusId = EnumStatus.Passive.Id;
         }
 
         public void ChangeName(string name)

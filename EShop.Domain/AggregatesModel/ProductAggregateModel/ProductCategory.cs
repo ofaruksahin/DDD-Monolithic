@@ -14,7 +14,7 @@
         private ProductCategory(int categoryId)
         {
             CategoryId = categoryId;
-            _statusId = EnumStatus.Active.Id;
+            StatusId = EnumStatus.Active.Id;
 
             CheckRule(new ProductCategoryCreatableRule());
         }
@@ -26,7 +26,7 @@
 
         public void SetStatusChangedToPassive()
         {
-            _statusId = EnumStatus.Passive.Id;
+            StatusId = EnumStatus.Passive.Id;
         }
     }
 }

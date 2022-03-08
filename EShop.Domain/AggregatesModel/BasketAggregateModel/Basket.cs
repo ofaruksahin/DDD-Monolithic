@@ -7,6 +7,7 @@
         public double ExcludesTaxPrice
         {
             get => BasketItems
+                .Where(f => f.Status.Id == EnumStatus.Active.Id)
                 .Sum(f => f.ExcludesTaxPrice * f.Count);
             private set { }
         }
@@ -14,6 +15,7 @@
         public double Tax
         {
             get => BasketItems
+                .Where(f => f.Status.Id == EnumStatus.Active.Id)
                 .Sum(f => f.Tax * f.Count);
             private set { }
         }
@@ -21,6 +23,7 @@
         public double IncludingTaxPrice
         {
             get => BasketItems
+                .Where(f => f.Status.Id == EnumStatus.Active.Id)
                 .Sum(f => f.IncludingTaxPrice * f.Count);
             private set { }
         }
@@ -31,7 +34,7 @@
         protected Basket()
         {
             _basketItems = new List<BasketItem>();
-            _statusId = EnumStatus.Active.Id;
+            StatusId = EnumStatus.Active.Id;
         }
 
         private Basket(
@@ -39,7 +42,7 @@
             List<BasketItem> basketItems = default
             )
         {
-            _statusId = EnumStatus.Active.Id;
+            StatusId = EnumStatus.Active.Id;
             CustomerId = customerId;
 
             if (basketItems == default)
@@ -65,13 +68,9 @@
 
         public void AddBasketItem(BasketItem basketItem)
         {
-            if (BasketItems.Any(f => f.SellerId == basketItem.SellerId && f.ProductId == basketItem.ProductId))
+            var basketIt = BasketItems.FirstOrDefault(f => f.SellerId == basketItem.SellerId && f.ProductId == basketItem.ProductId);
+            if (basketIt != null)
             {
-                var basketIt = BasketItems.FirstOrDefault(f => f.SellerId == basketItem.SellerId && f.ProductId == basketItem.ProductId);
-                if (basketIt == null)
-                {
-                    //Hata fırlat
-                }
                 basketIt.IncreaseCount(basketItem.Count);
             }
             else

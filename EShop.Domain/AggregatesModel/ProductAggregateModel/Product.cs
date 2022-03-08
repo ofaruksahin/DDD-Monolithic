@@ -36,7 +36,7 @@
             Price = price;
             SellerId = sellerId;
 
-            _statusId = EnumStatus.Active.Id;
+            StatusId = EnumStatus.Active.Id;
             AddDomainEvent(new ProductCreatedDomainEvent(this));
 
             CheckRule(new ProductCreatableRule());
@@ -65,7 +65,7 @@
 
         public void ChangeStatusToPassive()
         {
-            _statusId = EnumStatus.Passive.Id;
+            StatusId = EnumStatus.Passive.Id;
 
             AddDomainEvent(new ProductStatusChangedToPassiveDomainEvent(this));
         }

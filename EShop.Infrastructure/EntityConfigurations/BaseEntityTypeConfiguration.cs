@@ -10,15 +10,9 @@
 
             builder.Ignore(f => f.DomainEvents);
 
-            builder.Property<int>("_statusId")
-                .UsePropertyAccessMode(PropertyAccessMode.Field)
-                .HasColumnName("StatusId")
-                .IsRequired();
+            builder.Property(f => f.StatusId);
 
-            builder.HasOne(f => f.Status)
-                .WithMany()
-                .HasForeignKey("_statusId")
-                .OnDelete(DeleteBehavior.NoAction);
+            builder.Ignore(f => f.Status);
         }
     }
 }

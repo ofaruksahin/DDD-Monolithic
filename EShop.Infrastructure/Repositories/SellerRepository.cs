@@ -14,17 +14,13 @@
             {
                 return dbContext.Sellers.Add(seller).Entity;
             }
-            else
-            {
-                return seller;
-            }
+            return null;
         }
 
         public async Task<Seller> GetSeller(int sellerId)
         {
             return await dbContext
                 .Sellers
-                .Include(f => f.Status)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(f => f.Id == sellerId);
         }
@@ -33,7 +29,6 @@
         {
             return await dbContext
                 .Sellers
-                .Include(f => f.Status)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(f => f.Name == name);
         }
@@ -42,7 +37,6 @@
         {
             return await dbContext
                 .Sellers
-                .Include(f => f.Status)
                 .AsNoTracking()
                 .ToListAsync();
         }

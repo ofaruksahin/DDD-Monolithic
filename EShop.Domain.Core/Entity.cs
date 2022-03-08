@@ -24,13 +24,13 @@
             get
             {
                 if (_status == null)
-                    _status = EnumStatus.GetAll<EnumStatus>().FirstOrDefault(f => f.Id == _statusId);
+                    _status = EnumStatus.GetAll<EnumStatus>().FirstOrDefault(f => f.Id == StatusId);
                 return _status;
             }
             protected set => _status = value;
         }
 
-        protected int _statusId;
+        public int StatusId { get; protected set; }
 
         public List<INotification> DomainEvents => _domainEvents;
 

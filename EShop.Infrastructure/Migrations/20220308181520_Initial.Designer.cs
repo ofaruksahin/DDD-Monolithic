@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EShop.Infrastructure.Migrations
 {
     [DbContext(typeof(EShopDbContext))]
-    [Migration("20220307193003_Initial")]
+    [Migration("20220308181520_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -36,16 +36,13 @@ namespace EShop.Infrastructure.Migrations
                     b.Property<double>("IncludingTaxPrice")
                         .HasColumnType("double");
 
+                    b.Property<int>("StatusId")
+                        .HasColumnType("int");
+
                     b.Property<double>("Tax")
                         .HasColumnType("double");
 
-                    b.Property<int>("_statusId")
-                        .HasColumnType("int")
-                        .HasColumnName("StatusId");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("_statusId");
 
                     b.ToTable("Baskets", (string)null);
                 });
@@ -82,7 +79,7 @@ namespace EShop.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int?>("StatusId")
+                    b.Property<int>("StatusId")
                         .HasColumnType("int");
 
                     b.Property<double>("Tax")
@@ -108,13 +105,10 @@ namespace EShop.Infrastructure.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
-                    b.Property<int>("_statusId")
-                        .HasColumnType("int")
-                        .HasColumnName("StatusId");
+                    b.Property<int>("StatusId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("_statusId");
 
                     b.ToTable("Categories", (string)null);
                 });
@@ -138,18 +132,15 @@ namespace EShop.Infrastructure.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
+                    b.Property<int>("StatusId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Surname")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
-                    b.Property<int>("_statusId")
-                        .HasColumnType("int")
-                        .HasColumnName("StatusId");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("_statusId");
 
                     b.ToTable("Customers");
                 });
@@ -181,20 +172,17 @@ namespace EShop.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<int>("StatusId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
-                    b.Property<int>("_statusId")
-                        .HasColumnType("int")
-                        .HasColumnName("StatusId");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CustomerId");
-
-                    b.HasIndex("_statusId");
 
                     b.ToTable("CustomerAddresses");
                 });
@@ -222,15 +210,12 @@ namespace EShop.Infrastructure.Migrations
                     b.Property<int>("SellerId")
                         .HasColumnType("int");
 
-                    b.Property<int>("_statusId")
-                        .HasColumnType("int")
-                        .HasColumnName("StatusId");
+                    b.Property<int>("StatusId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("SellerId");
-
-                    b.HasIndex("_statusId");
 
                     b.ToTable("Products", (string)null);
                 });
@@ -249,20 +234,17 @@ namespace EShop.Infrastructure.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
+                    b.Property<int>("StatusId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Value")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
-                    b.Property<int>("_statusId")
-                        .HasColumnType("int")
-                        .HasColumnName("StatusId");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ProductId");
-
-                    b.HasIndex("_statusId");
 
                     b.ToTable("ProductAttributes");
                 });
@@ -279,17 +261,14 @@ namespace EShop.Infrastructure.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<int>("_statusId")
-                        .HasColumnType("int")
-                        .HasColumnName("StatusId");
+                    b.Property<int>("StatusId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
 
                     b.HasIndex("ProductId");
-
-                    b.HasIndex("_statusId");
 
                     b.ToTable("ProductCategories");
                 });
@@ -305,13 +284,10 @@ namespace EShop.Infrastructure.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
 
-                    b.Property<int>("_statusId")
-                        .HasColumnType("int")
-                        .HasColumnName("StatusId");
+                    b.Property<int>("StatusId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("_statusId");
 
                     b.ToTable("Sellers", (string)null);
                 });
@@ -344,17 +320,6 @@ namespace EShop.Infrastructure.Migrations
                         });
                 });
 
-            modelBuilder.Entity("EShop.Domain.AggregatesModel.BasketAggregateModel.Basket", b =>
-                {
-                    b.HasOne("EShop.Domain.Core.Enumerations.EnumStatus", "Status")
-                        .WithMany()
-                        .HasForeignKey("_statusId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("Status");
-                });
-
             modelBuilder.Entity("EShop.Domain.AggregatesModel.BasketAggregateModel.BasketItem", b =>
                 {
                     b.HasOne("EShop.Domain.AggregatesModel.BasketAggregateModel.Basket", null)
@@ -363,28 +328,8 @@ namespace EShop.Infrastructure.Migrations
 
                     b.HasOne("EShop.Domain.Core.Enumerations.EnumStatus", "Status")
                         .WithMany()
-                        .HasForeignKey("StatusId");
-
-                    b.Navigation("Status");
-                });
-
-            modelBuilder.Entity("EShop.Domain.AggregatesModel.CategoryAggregateModel.Category", b =>
-                {
-                    b.HasOne("EShop.Domain.Core.Enumerations.EnumStatus", "Status")
-                        .WithMany()
-                        .HasForeignKey("_statusId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("Status");
-                });
-
-            modelBuilder.Entity("EShop.Domain.AggregatesModel.CustomerAggregateModel.Customer", b =>
-                {
-                    b.HasOne("EShop.Domain.Core.Enumerations.EnumStatus", "Status")
-                        .WithMany()
-                        .HasForeignKey("_statusId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .HasForeignKey("StatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Status");
@@ -395,14 +340,6 @@ namespace EShop.Infrastructure.Migrations
                     b.HasOne("EShop.Domain.AggregatesModel.CustomerAggregateModel.Customer", null)
                         .WithMany("CustomerAddresses")
                         .HasForeignKey("CustomerId");
-
-                    b.HasOne("EShop.Domain.Core.Enumerations.EnumStatus", "Status")
-                        .WithMany()
-                        .HasForeignKey("_statusId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("Status");
                 });
 
             modelBuilder.Entity("EShop.Domain.AggregatesModel.ProductAggregateModel.Product", b =>
@@ -412,14 +349,6 @@ namespace EShop.Infrastructure.Migrations
                         .HasForeignKey("SellerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("EShop.Domain.Core.Enumerations.EnumStatus", "Status")
-                        .WithMany()
-                        .HasForeignKey("_statusId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("Status");
                 });
 
             modelBuilder.Entity("EShop.Domain.AggregatesModel.ProductAggregateModel.ProductAttribute", b =>
@@ -429,14 +358,6 @@ namespace EShop.Infrastructure.Migrations
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("EShop.Domain.Core.Enumerations.EnumStatus", "Status")
-                        .WithMany()
-                        .HasForeignKey("_statusId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("Status");
                 });
 
             modelBuilder.Entity("EShop.Domain.AggregatesModel.ProductAggregateModel.ProductCategory", b =>
@@ -452,25 +373,6 @@ namespace EShop.Infrastructure.Migrations
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("EShop.Domain.Core.Enumerations.EnumStatus", "Status")
-                        .WithMany()
-                        .HasForeignKey("_statusId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("Status");
-                });
-
-            modelBuilder.Entity("EShop.Domain.AggregatesModel.SellerAggregateModel.Seller", b =>
-                {
-                    b.HasOne("EShop.Domain.Core.Enumerations.EnumStatus", "Status")
-                        .WithMany()
-                        .HasForeignKey("_statusId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("Status");
                 });
 
             modelBuilder.Entity("EShop.Domain.AggregatesModel.BasketAggregateModel.Basket", b =>

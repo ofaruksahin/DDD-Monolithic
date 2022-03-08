@@ -30,7 +30,6 @@
             return await dbContext
                 .Customers
                 .Include(f => f.CustomerAddresses)
-                .Include(f => f.Status)
                 .AsNoTracking()
                 .ToListAsync();
         }
@@ -40,7 +39,6 @@
             return await dbContext
                 .Customers
                 .Include(f => f.CustomerAddresses)
-                .Include(f => f.Status)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(f => f.Id == id);
         }

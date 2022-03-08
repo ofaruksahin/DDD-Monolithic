@@ -15,7 +15,7 @@
         private Seller(string name)
         {
             Name = name;
-            _statusId = EnumStatus.Active.Id;
+            StatusId = EnumStatus.Active.Id;
 
             CheckRule(new SellerCreatableRule());
         }
@@ -32,7 +32,7 @@
 
         public void SetStatusChangedToPassive()
         {
-            _statusId = EnumStatus.Passive.Id;
+            StatusId = EnumStatus.Passive.Id;
             AddDomainEvent(new SellerStatusChangedToPassiveDomainEvent(this));
         }
     }

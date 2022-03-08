@@ -22,7 +22,7 @@
             Email = email;
             BirthDate = birthDate;
 
-            _statusId = EnumStatus.Active.Id;
+            StatusId = EnumStatus.Active.Id;
 
             _customerAddresses = new List<CustomerAddress>();
 
@@ -61,7 +61,7 @@
 
         public void ChangeStatusToPassive()
         {
-            _statusId = EnumStatus.Passive.Id;
+            StatusId = EnumStatus.Passive.Id;
             AddDomainEvent(new CustomerStatusChangedToPassiveDomainEvent(this));
         }
     }

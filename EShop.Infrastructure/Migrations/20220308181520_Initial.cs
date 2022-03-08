@@ -14,20 +14,6 @@ namespace EShop.Infrastructure.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Status",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false, defaultValue: 1),
-                    Name = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Status", x => x.Id);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
                 name: "Baskets",
                 columns: table => new
                 {
@@ -42,11 +28,6 @@ namespace EShop.Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Baskets", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Baskets_Status_StatusId",
-                        column: x => x.StatusId,
-                        principalTable: "Status",
-                        principalColumn: "Id");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -63,11 +44,6 @@ namespace EShop.Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Categories", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Categories_Status_StatusId",
-                        column: x => x.StatusId,
-                        principalTable: "Status",
-                        principalColumn: "Id");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -89,11 +65,6 @@ namespace EShop.Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Customers", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Customers_Status_StatusId",
-                        column: x => x.StatusId,
-                        principalTable: "Status",
-                        principalColumn: "Id");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -110,46 +81,20 @@ namespace EShop.Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Sellers", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Sellers_Status_StatusId",
-                        column: x => x.StatusId,
-                        principalTable: "Status",
-                        principalColumn: "Id");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "BasketItems",
+                name: "Status",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    SellerId = table.Column<int>(type: "int", nullable: false),
-                    SellerName = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    ProductId = table.Column<int>(type: "int", nullable: false),
-                    ProductName = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Count = table.Column<int>(type: "int", nullable: false),
-                    ExcludesTaxPrice = table.Column<double>(type: "double", nullable: false),
-                    Tax = table.Column<double>(type: "double", nullable: false),
-                    IncludingTaxPrice = table.Column<double>(type: "double", nullable: false),
-                    BasketId = table.Column<int>(type: "int", nullable: true),
-                    StatusId = table.Column<int>(type: "int", nullable: true)
+                    Id = table.Column<int>(type: "int", nullable: false, defaultValue: 1),
+                    Name = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BasketItems", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_BasketItems_Baskets_BasketId",
-                        column: x => x.BasketId,
-                        principalTable: "Baskets",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_BasketItems_Status_StatusId",
-                        column: x => x.StatusId,
-                        principalTable: "Status",
-                        principalColumn: "Id");
+                    table.PrimaryKey("PK_Status", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -180,11 +125,6 @@ namespace EShop.Infrastructure.Migrations
                         column: x => x.CustomerId,
                         principalTable: "Customers",
                         principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_CustomerAddresses_Status_StatusId",
-                        column: x => x.StatusId,
-                        principalTable: "Status",
-                        principalColumn: "Id");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -212,11 +152,42 @@ namespace EShop.Infrastructure.Migrations
                         principalTable: "Sellers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "BasketItems",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    SellerId = table.Column<int>(type: "int", nullable: false),
+                    SellerName = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    ProductName = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Count = table.Column<int>(type: "int", nullable: false),
+                    ExcludesTaxPrice = table.Column<double>(type: "double", nullable: false),
+                    Tax = table.Column<double>(type: "double", nullable: false),
+                    IncludingTaxPrice = table.Column<double>(type: "double", nullable: false),
+                    BasketId = table.Column<int>(type: "int", nullable: true),
+                    StatusId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BasketItems", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Products_Status_StatusId",
+                        name: "FK_BasketItems_Baskets_BasketId",
+                        column: x => x.BasketId,
+                        principalTable: "Baskets",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_BasketItems_Status_StatusId",
                         column: x => x.StatusId,
                         principalTable: "Status",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -242,11 +213,6 @@ namespace EShop.Infrastructure.Migrations
                         principalTable: "Products",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ProductAttributes_Status_StatusId",
-                        column: x => x.StatusId,
-                        principalTable: "Status",
-                        principalColumn: "Id");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -275,11 +241,6 @@ namespace EShop.Infrastructure.Migrations
                         principalTable: "Products",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ProductCategories_Status_StatusId",
-                        column: x => x.StatusId,
-                        principalTable: "Status",
-                        principalColumn: "Id");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -304,39 +265,14 @@ namespace EShop.Infrastructure.Migrations
                 column: "StatusId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Baskets_StatusId",
-                table: "Baskets",
-                column: "StatusId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Categories_StatusId",
-                table: "Categories",
-                column: "StatusId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_CustomerAddresses_CustomerId",
                 table: "CustomerAddresses",
                 column: "CustomerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CustomerAddresses_StatusId",
-                table: "CustomerAddresses",
-                column: "StatusId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Customers_StatusId",
-                table: "Customers",
-                column: "StatusId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_ProductAttributes_ProductId",
                 table: "ProductAttributes",
                 column: "ProductId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ProductAttributes_StatusId",
-                table: "ProductAttributes",
-                column: "StatusId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProductCategories_CategoryId",
@@ -349,24 +285,9 @@ namespace EShop.Infrastructure.Migrations
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductCategories_StatusId",
-                table: "ProductCategories",
-                column: "StatusId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Products_SellerId",
                 table: "Products",
                 column: "SellerId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Products_StatusId",
-                table: "Products",
-                column: "StatusId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Sellers_StatusId",
-                table: "Sellers",
-                column: "StatusId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -387,6 +308,9 @@ namespace EShop.Infrastructure.Migrations
                 name: "Baskets");
 
             migrationBuilder.DropTable(
+                name: "Status");
+
+            migrationBuilder.DropTable(
                 name: "Customers");
 
             migrationBuilder.DropTable(
@@ -397,9 +321,6 @@ namespace EShop.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "Sellers");
-
-            migrationBuilder.DropTable(
-                name: "Status");
         }
     }
 }

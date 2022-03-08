@@ -26,7 +26,6 @@
             product = await dbContext
                 .Products
                 .Include(f => f.Categories)
-                .Include(f => f.Status)
                 .Include(f => f.Attributes)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(f => f.Id == id);
@@ -38,7 +37,6 @@
             return await dbContext
                 .Products
                 .Include(f => f.Categories)
-                .Include(f => f.Status)
                 .Include(f => f.Attributes)
                 .AsNoTracking()
                 .ToListAsync();
@@ -51,22 +49,19 @@
 
         public ProductAttribute UpdateAttribute(ProductAttribute productAttribute)
         {
-            dbContext.Entry(productAttribute).State = EntityState.Modified;
-            return productAttribute;
+            return dbContext.ProductAttributes.Update(productAttribute).Entity;
         }
 
         public ProductCategory UpdateCategory(ProductCategory productCategory)
         {
-            dbContext.Entry(productCategory).State = EntityState.Modified;
-            return productCategory;
+            return dbContext.ProductCategories.Update(productCategory).Entity;
         }
 
         public async Task<List<Product>> GetProductsBySeller(int sellerId)
         {
             return await dbContext
                    .Products
-                   .Include(f => f.Status)
-                   .Where(f => f.Status.Id == EnumStatus.Active.Id)
+                   .Where(f => f.StatusId == EnumStatus.Active.Id)
                    .ToListAsync();
         }
     }

@@ -34,7 +34,7 @@
             ExcludesTaxPrice = excludesTaxPrice;
             Tax = tax;
             IncludingTaxPrice = includingTaxPrice;
-            _statusId = EnumStatus.Active.Id;
+            StatusId = EnumStatus.Active.Id;
         }
 
         public static BasketItem Create(

@@ -20,7 +20,7 @@
             Neighborhood = neighborhood;
             Description = description;
 
-            _statusId = EnumStatus.Active.Id;
+            StatusId = EnumStatus.Active.Id;
             AddDomainEvent(new CustomerAddressCreatedDomainEvent(this));
         }
 
@@ -31,7 +31,7 @@
 
         public void ChangeStatusToPassive()
         {
-            _statusId = EnumStatus.Passive.Id;
+            StatusId = EnumStatus.Passive.Id;
             AddDomainEvent(new CustomerAddressDeletedDomainEvent(this));
         }
     }

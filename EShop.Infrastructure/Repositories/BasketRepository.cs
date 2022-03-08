@@ -12,37 +12,29 @@
         {
             if (basket.IsTransient())
             {
-                dbContext.Entry(basket).State = EntityState.Added;
-                foreach (var item in basket.BasketItems)
-                {
-                    dbContext.Entry(item).State = EntityState.Added;
-                }
-                return basket;
+                return dbContext.Baskets.Add(basket).Entity;
             }
-            return basket;
+            return null;
         }
 
         public async Task<Basket> GetBasketByCustomerId(int customerId)
         {
             return await dbContext
                 .Baskets
-                .Include(f => f.Status)
                 .Include(f => f.BasketItems)
-                .Where(f => f.Status.Id == EnumStatus.Active.Id)
+                .Where(f => f.StatusId == EnumStatus.Active.Id)
                 .AsNoTracking()
                 .FirstOrDefaultAsync();
         }
 
         public Basket Update(Basket basket)
         {
-            dbContext.Entry(basket).State = EntityState.Modified;
-            return basket;
+            return dbContext.Baskets.Update(basket).Entity;
         }
 
         public BasketItem Update(BasketItem basketItem)
         {
-            dbContext.Entry(basketItem).State = EntityState.Modified;
-            return basketItem;
+            return dbContext.BasketItems.Update(basketItem).Entity;
         }
     }
 }

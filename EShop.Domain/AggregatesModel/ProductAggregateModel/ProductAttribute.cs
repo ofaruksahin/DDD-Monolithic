@@ -16,7 +16,7 @@
         {
             Name = name;
             Value = value;
-            _statusId = EnumStatus.Active.Id;
+            StatusId = EnumStatus.Active.Id;
 
             CheckRule(new ProductAttributeCreatableRule());
         }
@@ -28,7 +28,7 @@
 
         public void SetStatusChangedToPassive()
         {
-            _statusId = EnumStatus.Passive.Id;
+            StatusId = EnumStatus.Passive.Id;
         }
     }
 }

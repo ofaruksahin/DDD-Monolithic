@@ -14,31 +14,27 @@
             {
                 return dbContext.Categories.Add(category).Entity;
             }
-            else
-            {
-                return category;
-            }
+            return null;
         }
 
         public async Task<List<Category>> GetCategories()
         {
-            return dbContext.Categories.Include(f => f.Status).AsNoTracking().ToList();
+            return dbContext.Categories.AsNoTracking().ToList();
         }
 
         public async Task<Category> GetCategoryById(int id)
         {
-            return dbContext.Categories.Include(f => f.Status).AsNoTracking().FirstOrDefault(f => f.Id == id);
+            return dbContext.Categories.AsNoTracking().FirstOrDefault(f => f.Id == id);
         }
 
         public async Task<Category> GetCategoryByName(string name)
         {
-            return dbContext.Categories.Include(f => f.Status).AsNoTracking().FirstOrDefault(f => f.Name == name);
+            return dbContext.Categories.AsNoTracking().FirstOrDefault(f => f.Name == name);
         }
 
         public Category Update(Category category)
         {
-            dbContext.Entry(category).State = EntityState.Modified;
-            return category;
+            return dbContext.Categories.Update(category).Entity;
         }
     }
 }

@@ -40,7 +40,7 @@
                 }
                 if (seller == null)
                 {
-                    //TODO: Satıcı bulunamadı Hata Fırlat
+                    return BaseResponse<int>.Fail(0, "Satıcı Bulunamadı");
                 }
                 if (seller != null && !products.Any(f => f.SellerId == seller.Id))
                     products.AddRange(await _productRepository.GetProductsBySeller(seller.Id));
@@ -50,7 +50,7 @@
                     var product = products.FirstOrDefault(f => f.SellerId == basketItemDto.SellerId && f.Id == basketItemDto.ProductId);
                     if (product == null)
                     {
-                        //TODO: Hata fırlat
+                        return BaseResponse<int>.Fail(0, "Böyle bir ürün bulunamadı");
                     }
                     else
                     {
