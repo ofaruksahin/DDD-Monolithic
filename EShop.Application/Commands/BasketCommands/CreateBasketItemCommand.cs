@@ -9,18 +9,24 @@
     {
         private readonly ISellerRepository _sellerRepository;
         private readonly IProductRepository _productRepository;
+        private readonly ICustomerRepository _customerRepository;
         public CreateBasketItemCommandHandler(
             IBasketRepository basketRepository,
             ISellerRepository sellerRepository,
-            IProductRepository productRepository)
+            IProductRepository productRepository,
+            ICustomerRepository customerRepository)
             : base(basketRepository)
         {
             _sellerRepository = sellerRepository;
             _productRepository = productRepository;
+            _customerRepository = customerRepository;
         }
 
         public async Task<BaseResponse<int>> Handle(CreateBasketItemCommand request, CancellationToken cancellationToken)
         {
+            var customer = await _customerRepository.GetCustomerById(request.CustomerId);
+            if (customer == null)
+                return BaseResponse<int>.Fail(0, "Böyle bir müşteri bulunamadı");
             var basket = await _basketRepository.GetBasketByCustomerId(request.CustomerId);
             if (basket == null)
             {
