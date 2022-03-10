@@ -51,7 +51,7 @@ namespace EShop.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int?>("BasketId")
+                    b.Property<int>("BasketId")
                         .HasColumnType("int");
 
                     b.Property<int>("Count")
@@ -68,14 +68,16 @@ namespace EShop.Infrastructure.Migrations
 
                     b.Property<string>("ProductName")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
 
                     b.Property<int>("SellerId")
                         .HasColumnType("int");
 
                     b.Property<string>("SellerName")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
 
                     b.Property<int>("StatusId")
                         .HasColumnType("int");
@@ -87,9 +89,7 @@ namespace EShop.Infrastructure.Migrations
 
                     b.HasIndex("BasketId");
 
-                    b.HasIndex("StatusId");
-
-                    b.ToTable("BasketItems");
+                    b.ToTable("BasketItems", (string)null);
                 });
 
             modelBuilder.Entity("EShop.Domain.AggregatesModel.CategoryAggregateModel.Category", b =>
@@ -322,15 +322,9 @@ namespace EShop.Infrastructure.Migrations
                 {
                     b.HasOne("EShop.Domain.AggregatesModel.BasketAggregateModel.Basket", null)
                         .WithMany("BasketItems")
-                        .HasForeignKey("BasketId");
-
-                    b.HasOne("EShop.Domain.Core.Enumerations.EnumStatus", "Status")
-                        .WithMany()
-                        .HasForeignKey("StatusId")
+                        .HasForeignKey("BasketId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Status");
                 });
 
             modelBuilder.Entity("EShop.Domain.AggregatesModel.CustomerAggregateModel.CustomerAddress", b =>

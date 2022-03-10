@@ -39,6 +39,9 @@
             modelBuilder.ApplyConfiguration(new CustomerEntityTypeConfiguration());
             modelBuilder.ApplyConfiguration(new CustomerAddressEntityTypeConfiguration());
             modelBuilder.ApplyConfiguration(new BasketEntityTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new BasketItemEntityTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new OrderEntityTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new OrderItemEntityTypeConfiguration());
         }
 
         public async Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default)

@@ -5,7 +5,7 @@
 
     }
 
-    public class CreateBasketItemCommandHandler : BaseBasketCommands, IRequestHandler<CreateBasketItemCommand, BaseResponse<int>>
+    public class CreateBasketItemCommandHandler : BaseBasketCommand, IRequestHandler<CreateBasketItemCommand, BaseResponse<int>>
     {
         private readonly ISellerRepository _sellerRepository;
         private readonly IProductRepository _productRepository;

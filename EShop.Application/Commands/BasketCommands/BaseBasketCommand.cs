@@ -1,10 +1,10 @@
 ﻿namespace EShop.Application.Commands.BasketCommands
 {
-    public abstract class BaseBasketCommands
+    public abstract class BaseBasketCommand
     {
         protected readonly IBasketRepository _basketRepository;
 
-        protected BaseBasketCommands(IBasketRepository basketRepository)
+        protected BaseBasketCommand(IBasketRepository basketRepository)
         {
             _basketRepository = basketRepository;
         }

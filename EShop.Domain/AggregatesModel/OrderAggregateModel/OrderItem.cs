@@ -1,21 +1,22 @@
-﻿namespace EShop.Domain.AggregatesModel.BasketAggregateModel
+﻿namespace EShop.Domain.AggregatesModel.OrderAggregateModel
 {
-    public class BasketItem : Entity
+    public class OrderItem : Entity
     {
         public int SellerId { get; private set; }
-        public string SellerName { get; private set; }
-        public int ProductId { get; private set; }
-        public string ProductName { get; private set; }
-        public int Count { get; private set; }
-        public double ExcludesTaxPrice { get; private set; }
-        public double Tax { get; private set; }
-        public double IncludingTaxPrice { get; private set; }
+        public string SellerName { get;private set; }
+        public int ProductId { get;private set; }
+        public string ProductName { get;private set; }
+        public int Count { get;private set; }
+        public double ExcludesTaxPrice { get;private set; }
+        public double Tax { get;private set; }
+        public double IncludingTaxPrice { get;private set; }
 
-        protected BasketItem()
+        protected OrderItem()
         {
+            StatusId = EnumStatus.Active.Id;
         }
 
-        private BasketItem(
+        private OrderItem(
             int sellerId,
             string sellerName,
             int productId,
@@ -37,7 +38,7 @@
             StatusId = EnumStatus.Active.Id;
         }
 
-        public static BasketItem Create(
+        public OrderItem Create(
             int sellerId,
             string sellerName,
             int productId,
@@ -48,7 +49,7 @@
             double includingTaxPrice
             )
         {
-            return new BasketItem(
+            return new OrderItem(
                 sellerId,
                 sellerName,
                 productId,
@@ -56,19 +57,7 @@
                 count,
                 excludesTaxPrice,
                 tax,
-                includingTaxPrice
-                );
-        }
-
-        public void IncreaseCount(int count)
-        {
-            Count += count;
-        }
-
-        public void StatusChangedToPassive()
-        {
-            StatusId = EnumStatus.Passive.Id;
+                includingTaxPrice);
         }
     }
 }
-

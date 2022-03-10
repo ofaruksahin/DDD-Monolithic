@@ -10,7 +10,7 @@
         }
     }
 
-    public class GetBasketCommandHandler : BaseBasketCommands, IRequestHandler<GetBasketCommand, BaseResponse<BasketDto>>
+    public class GetBasketCommandHandler : BaseBasketCommand, IRequestHandler<GetBasketCommand, BaseResponse<BasketDto>>
     {
         private readonly ICustomerRepository _customerRepository;
         public GetBasketCommandHandler(
@@ -48,6 +48,7 @@
                 basketItemDto.ExcludesTaxPrice = basketItem.ExcludesTaxPrice;
                 basketItemDto.Tax = basketItem.Tax;
                 basketItemDto.IncludingTaxPrice = basketItem.IncludingTaxPrice;
+                basketItemDto.Status = basketItem.Status.Name;
 
                 basketDto.BasketItems.Add(basketItemDto);
             }

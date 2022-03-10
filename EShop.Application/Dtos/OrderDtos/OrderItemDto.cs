@@ -1,9 +1,10 @@
-﻿namespace EShop.Application.Dtos.BasketDtos
+﻿namespace EShop.Application.Dtos.OrderDtos
 {
-    public class BasketItemDto
+    public class OrderItemDto
     {
-        public int ProductId { get; set; }
+        public int SellerId { get; set; }
         public string SellerName { get; set; }
+        public int ProductId { get; set; }
         public string ProductName { get; set; }
         public int Count { get; set; }
         public double ExcludesTaxPrice { get; set; }
@@ -12,4 +13,3 @@
         public string Status { get; set; }
     }
 }
-

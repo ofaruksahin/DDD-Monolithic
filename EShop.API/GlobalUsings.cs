@@ -1,23 +1,19 @@
-﻿global using Microsoft.AspNetCore.Mvc;
-global using MediatR;
-
-global using EShop.Domain.Core.Abstractions;
-global using EShop.Application.Commands.SellerCommands;
-global using EShop.Application.Commands.CategoryCommands;
-
-
-global using EShop.API.Extensions;
+﻿global using EShop.API.Extensions;
 global using EShop.Application;
+global using EShop.Application.Commands.BasketCommands;
+global using EShop.Application.Commands.CategoryCommands;
+global using EShop.Application.Commands.CustomerCommands;
+global using EShop.Application.Commands.ProductCommands;
+global using EShop.Application.Commands.SellerCommands;
+global using EShop.Domain.AggregatesModel.BasketAggregateModel;
 global using EShop.Domain.AggregatesModel.CategoryAggregateModel;
+global using EShop.Domain.AggregatesModel.CustomerAggregateModel;
+global using EShop.Domain.AggregatesModel.OrderAggregateModel;
+global using EShop.Domain.AggregatesModel.ProductAggregateModel;
 global using EShop.Domain.AggregatesModel.SellerAggregateModel;
+global using EShop.Domain.Core.Abstractions;
 global using EShop.Infrastructure;
 global using EShop.Infrastructure.Repositories;
-global using EShop.Domain.AggregatesModel.ProductAggregateModel;
-global using EShop.Application.Commands.ProductCommands;
-
+global using MediatR;
+global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.EntityFrameworkCore;
-
-global using EShop.Domain.AggregatesModel.CustomerAggregateModel;
-global using EShop.Application.Commands.CustomerCommands;
-global using EShop.Domain.AggregatesModel.BasketAggregateModel;
-global using EShop.Application.Commands.BasketCommands;

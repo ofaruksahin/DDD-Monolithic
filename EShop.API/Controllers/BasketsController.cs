@@ -1,6 +1,5 @@
 ﻿namespace EShop.API.Controllers
 {
-    //TODO: Sepet görüntüleme ve direkt sepetten ürün silme
     public class BasketsController : BaseAPIController
     {
         public BasketsController(IMediator mediator) : base(mediator)

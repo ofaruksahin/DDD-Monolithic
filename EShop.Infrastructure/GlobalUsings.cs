@@ -1,4 +1,9 @@
-﻿global using EShop.Domain.AggregatesModel.SellerAggregateModel;
+﻿global using EShop.Domain.AggregatesModel.BasketAggregateModel;
+global using EShop.Domain.AggregatesModel.CategoryAggregateModel;
+global using EShop.Domain.AggregatesModel.CustomerAggregateModel;
+global using EShop.Domain.AggregatesModel.OrderAggregateModel;
+global using EShop.Domain.AggregatesModel.ProductAggregateModel;
+global using EShop.Domain.AggregatesModel.SellerAggregateModel;
 global using EShop.Domain.Core;
 global using EShop.Domain.Core.Enumerations;
 global using EShop.Infrastructure.EntityConfigurations;
@@ -9,7 +14,3 @@ global using Microsoft.EntityFrameworkCore.Storage;
 global using System;
 global using System.Data;
 global using System.Threading.Tasks;
-global using EShop.Domain.AggregatesModel.CategoryAggregateModel;
-global using EShop.Domain.AggregatesModel.ProductAggregateModel;
-global using EShop.Domain.AggregatesModel.CustomerAggregateModel;
-global using EShop.Domain.AggregatesModel.BasketAggregateModel;

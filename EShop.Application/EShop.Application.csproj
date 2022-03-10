@@ -32,14 +32,12 @@
     <None Remove="DomainEventHandlers\BasketEventHandlers\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Commands\" />
     <Folder Include="DomainEventHandlers\" />
     <Folder Include="Commands\SellerCommands\" />
     <Folder Include="DomainEventHandlers\SellerEventHandlers\" />
     <Folder Include="Commands\CategoryCommands\" />
     <Folder Include="DomainEventHandlers\ProductEventHandlers\" />
     <Folder Include="Commands\ProductCommands\" />
-    <Folder Include="Dtos\" />
     <Folder Include="Dtos\ProductDtos\" />
     <Folder Include="DomainEventHandlers\CustomerEventHandlers\" />
     <Folder Include="Commands\CustomerCommands\" />
@@ -47,7 +45,6 @@
     <Folder Include="Dtos\CategoryDtos\" />
     <Folder Include="Dtos\SellerDtos\" />
     <Folder Include="Dtos\BasketDtos\" />
-    <Folder Include="Commands\BasketCommands\" />
     <Folder Include="DomainEventHandlers\BasketEventHandlers\" />
   </ItemGroup>
 </Project>
