@@ -32,7 +32,6 @@
     <None Remove="DomainEventHandlers\BasketEventHandlers\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DomainEventHandlers\" />
     <Folder Include="Commands\SellerCommands\" />
     <Folder Include="DomainEventHandlers\SellerEventHandlers\" />
     <Folder Include="Commands\CategoryCommands\" />

@@ -12,3 +12,4 @@ global using EShop.Domain.AggregatesModel.CustomerAggregateModel;
 global using EShop.Domain.AggregatesModel.CustomerAggregateModel.Rules;
 global using EShop.Domain.Exceptions;
 global using EShop.Domain.AggregatesModel.BasketAggregateModel;
+global using EShop.Domain.AggregatesModel.OrderAggregateModel;

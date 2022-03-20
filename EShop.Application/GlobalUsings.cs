@@ -20,3 +20,4 @@ global using EShop.Domain.Exceptions;
 global using EShop.Domain.AggregatesModel.BasketAggregateModel;
 global using EShop.Application.Dtos.BasketDtos;
 global using EShop.Domain.AggregatesModel.OrderAggregateModel;
+global using EShop.Application.Dtos.OrderDtos;

@@ -1,20 +1,38 @@
-﻿namespace EShop.Domain.AggregatesModel.OrderAggregateModel
+﻿using System.Runtime.CompilerServices;
+
+namespace EShop.Domain.AggregatesModel.OrderAggregateModel
 {
-    public class Order : Entity, IAggregateRoot
+    public class Order : Entity, IAggregateRoot, INotification
     {
         public int CustomerId
         {
-            get; 
+            get;
             private set;
         }
 
         public double ExcludesTaxPrice
         {
-            get; 
-            private set;
+            get => OrderItems
+                .Where(f => f.Status.Id == EnumStatus.Active.Id)
+                .Sum(f => f.ExcludesTaxPrice * f.Count);
+            private set { }
         }
-        public double Tax { get; private set; }
-        public double IncludingTaxPrice { get; private set; }
+
+        public double Tax
+        {
+            get => OrderItems
+                .Where(f => f.Status.Id == EnumStatus.Active.Id)
+                .Sum(f => f.Tax * f.Count);
+            private set { }
+        }
+
+        public double IncludingTaxPrice
+        {
+            get => OrderItems
+                .Where(f => f.Status.Id == EnumStatus.Active.Id)
+                .Sum(f => f.IncludingTaxPrice * f.Count);
+            private set { }
+        }
 
         private readonly List<OrderItem> _orderItems;
         public IReadOnlyList<OrderItem> OrderItems => _orderItems;
@@ -33,8 +51,11 @@
 
             if (orderItems != default)
                 _orderItems = orderItems;
+            else
+                _orderItems = new List<OrderItem>();
 
             StatusId = EnumStatus.Active.Id;
+            AddDomainEvent(new OrderCreatedDomainEvent(this));
         }
 
         public static Order Create(
@@ -42,6 +63,12 @@
             List<OrderItem> orderItems = default)
         {
             return new Order(customerId, orderItems);
+        }
+
+        public void AddOrderItem(OrderItem orderItem)
+        {
+            if (!OrderItems.Any(f => f.ProductId == orderItem.ProductId))
+                _orderItems.Add(orderItem);
         }
     }
 }

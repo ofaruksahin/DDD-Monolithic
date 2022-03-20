@@ -71,10 +71,6 @@
             else
             {
                 _basketRepository.Update(basket);
-                foreach (var basketItem in basket.BasketItems)
-                {
-                    _basketRepository.Update(basketItem);
-                }
             }
 
             var result = await _basketRepository.UnitOfWork.SaveEntitiesAsync();

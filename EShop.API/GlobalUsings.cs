@@ -17,3 +17,4 @@ global using EShop.Infrastructure.Repositories;
 global using MediatR;
 global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.EntityFrameworkCore;
+global using EShop.Application.Commands.OrderCommands;

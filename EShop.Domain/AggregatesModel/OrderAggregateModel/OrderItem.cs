@@ -38,7 +38,7 @@
             StatusId = EnumStatus.Active.Id;
         }
 
-        public OrderItem Create(
+        public static OrderItem Create(
             int sellerId,
             string sellerName,
             int productId,

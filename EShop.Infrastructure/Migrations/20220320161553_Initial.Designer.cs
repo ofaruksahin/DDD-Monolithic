@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EShop.Infrastructure.Migrations
 {
     [DbContext(typeof(EShopDbContext))]
-    [Migration("20220309185308_Initial")]
+    [Migration("20220320161553_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -187,6 +187,77 @@ namespace EShop.Infrastructure.Migrations
                     b.ToTable("CustomerAddresses");
                 });
 
+            modelBuilder.Entity("EShop.Domain.AggregatesModel.OrderAggregateModel.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("ExcludesTaxPrice")
+                        .HasColumnType("double");
+
+                    b.Property<double>("IncludingTaxPrice")
+                        .HasColumnType("double");
+
+                    b.Property<int>("StatusId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Tax")
+                        .HasColumnType("double");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("EShop.Domain.AggregatesModel.OrderAggregateModel.OrderItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<double>("ExcludesTaxPrice")
+                        .HasColumnType("double");
+
+                    b.Property<double>("IncludingTaxPrice")
+                        .HasColumnType("double");
+
+                    b.Property<int?>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ProductName")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("SellerId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SellerName")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("StatusId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Tax")
+                        .HasColumnType("double");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("OrderItems");
+                });
+
             modelBuilder.Entity("EShop.Domain.AggregatesModel.ProductAggregateModel.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -336,6 +407,13 @@ namespace EShop.Infrastructure.Migrations
                         .HasForeignKey("CustomerId");
                 });
 
+            modelBuilder.Entity("EShop.Domain.AggregatesModel.OrderAggregateModel.OrderItem", b =>
+                {
+                    b.HasOne("EShop.Domain.AggregatesModel.OrderAggregateModel.Order", null)
+                        .WithMany("OrderItems")
+                        .HasForeignKey("OrderId");
+                });
+
             modelBuilder.Entity("EShop.Domain.AggregatesModel.ProductAggregateModel.Product", b =>
                 {
                     b.HasOne("EShop.Domain.AggregatesModel.SellerAggregateModel.Seller", null)
@@ -377,6 +455,11 @@ namespace EShop.Infrastructure.Migrations
             modelBuilder.Entity("EShop.Domain.AggregatesModel.CustomerAggregateModel.Customer", b =>
                 {
                     b.Navigation("CustomerAddresses");
+                });
+
+            modelBuilder.Entity("EShop.Domain.AggregatesModel.OrderAggregateModel.Order", b =>
+                {
+                    b.Navigation("OrderItems");
                 });
 
             modelBuilder.Entity("EShop.Domain.AggregatesModel.ProductAggregateModel.Product", b =>

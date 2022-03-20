@@ -69,6 +69,24 @@ namespace EShop.Infrastructure.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
+                name: "Orders",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    CustomerId = table.Column<int>(type: "int", nullable: false),
+                    ExcludesTaxPrice = table.Column<double>(type: "double", nullable: false),
+                    Tax = table.Column<double>(type: "double", nullable: false),
+                    IncludingTaxPrice = table.Column<double>(type: "double", nullable: false),
+                    StatusId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Orders", x => x.Id);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
                 name: "Sellers",
                 columns: table => new
                 {
@@ -155,6 +173,36 @@ namespace EShop.Infrastructure.Migrations
                         name: "FK_CustomerAddresses_Customers_CustomerId",
                         column: x => x.CustomerId,
                         principalTable: "Customers",
+                        principalColumn: "Id");
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "OrderItems",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    SellerId = table.Column<int>(type: "int", nullable: false),
+                    SellerName = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    ProductName = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Count = table.Column<int>(type: "int", nullable: false),
+                    ExcludesTaxPrice = table.Column<double>(type: "double", nullable: false),
+                    Tax = table.Column<double>(type: "double", nullable: false),
+                    IncludingTaxPrice = table.Column<double>(type: "double", nullable: false),
+                    OrderId = table.Column<int>(type: "int", nullable: true),
+                    StatusId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrderItems", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_OrderItems_Orders_OrderId",
+                        column: x => x.OrderId,
+                        principalTable: "Orders",
                         principalColumn: "Id");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
@@ -260,6 +308,11 @@ namespace EShop.Infrastructure.Migrations
                 column: "CustomerId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_OrderItems_OrderId",
+                table: "OrderItems",
+                column: "OrderId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ProductAttributes_ProductId",
                 table: "ProductAttributes",
                 column: "ProductId");
@@ -289,6 +342,9 @@ namespace EShop.Infrastructure.Migrations
                 name: "CustomerAddresses");
 
             migrationBuilder.DropTable(
+                name: "OrderItems");
+
+            migrationBuilder.DropTable(
                 name: "ProductAttributes");
 
             migrationBuilder.DropTable(
@@ -302,6 +358,9 @@ namespace EShop.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "Customers");
+
+            migrationBuilder.DropTable(
+                name: "Orders");
 
             migrationBuilder.DropTable(
                 name: "Categories");

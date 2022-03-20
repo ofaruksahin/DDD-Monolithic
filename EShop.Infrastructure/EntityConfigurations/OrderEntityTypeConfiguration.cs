@@ -6,7 +6,7 @@
         {
             base.Configure(builder);
 
-            var orderItem = builder.Metadata.FindNavigation(nameof(Basket.BasketItems));
+            var orderItem = builder.Metadata.FindNavigation(nameof(Order.OrderItems));
             orderItem.SetPropertyAccessMode(PropertyAccessMode.Field);
         }
     }

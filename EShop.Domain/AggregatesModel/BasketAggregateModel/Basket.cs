@@ -68,7 +68,7 @@
 
         public void AddBasketItem(BasketItem basketItem)
         {
-            var basketIt = BasketItems.FirstOrDefault(f => f.SellerId == basketItem.SellerId && f.ProductId == basketItem.ProductId);
+            var basketIt = BasketItems.FirstOrDefault(f => f.SellerId == basketItem.SellerId && f.ProductId == basketItem.ProductId && f.Status.Id == EnumStatus.Active.Id);
             if (basketIt != null)
             {
                 basketIt.IncreaseCount(basketItem.Count);
@@ -77,6 +77,11 @@
             {
                 _basketItems.Add(basketItem);
             }
+        }
+
+        public void SetStatusChangedToPassive()
+        {
+            StatusId = EnumStatus.Passive.Id;
         }
     }
 }
